@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 实体类基类
  * @author Choococo
  */
 public class BaseEntity implements Serializable {
