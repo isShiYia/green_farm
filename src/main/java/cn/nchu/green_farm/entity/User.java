@@ -5,9 +5,10 @@ package cn.nchu.green_farm.entity;
  */
 public class User {
 
-    Integer id;
-    String name;
-    String password;
+    private Integer id;
+    private String name;
+    private String password;
+
 
     public String getPassword() {
         return password;
