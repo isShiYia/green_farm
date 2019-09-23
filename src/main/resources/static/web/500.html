@@ -4,7 +4,7 @@
 	<head>
 
 		<meta charset="utf-8" />
-		<title>绿色农场</title>
+		<title>学子商城</title>
 		<!--导入核心文件-->
 		<script src="../bootstrap3/js/holder.js"></script>
 		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -12,68 +12,102 @@
 		<script src="../bootstrap3/js/bootstrap.js"></script>
 		<!-- 字体图标 -->
 		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
-		<link rel="stylesheet" type="text/css" href="../css/top.css" />
-		<link rel="stylesheet" type="text/css" href="../css/index.css" />
 		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="../css/reg.css" />
+		<link rel="stylesheet" type="text/css" href="../css/top.css" />
 		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
 	</head>
 
 	<body>
 		<!--头部-->
 		<header class="header">
+			<!--学子商城logo-->
+			<div class="col-md-3">
+				<a href="index.html">
+					<img src="../images/index/stumalllogo.png" />
+				</a>
+			</div>
+			<!--快捷选项-->
+			<div class="col-md-9 top-item">
 
-			<img src="../images/index/stumalllogo.png" alt="" />
-			<span class="pull-right"><h3><small>欢迎访问</small><b>绿色农场</b></h3></span>
+				<ul class="list-inline" style="float: right;">
 
-		</header>
-		<!--主体-->
-		<div class="container mycontent text-left">
-			<!--透明层 -->
-			<div class="regDiv">
-				<h4>新用户注册</h4>
-				<hr />
-				<!--表单开始-->
-				<form   class="form-horizontal" role="form">
-					<!--用户名-->
-					<div class="form-group">
-						<label  class="col-md-3 control-label">名字：</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请输入用户名">
+					<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
+					<li class="li-split">|</li>
+					<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;订单</a></li>
+					<li class="li-split">|</li>
+					<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;购物车</a></li>
+					<li class="li-split">|</li>
+					<li>
+						<!--下列列表按钮 ：管理-->
+						<div class="btn-group">
+							<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+								<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>
+							</button>
+							<ul class="dropdown-menu top-dropdown-ul" role="menu">
+								<li><a href="password.html">修改密码</a></li>
+								<li><a href="userdata.html">个人资料</a></li>
+								<li><a href="upload.html">上传头像</a></li>
+								<li><a href="address.html">收货管理	</a></li>
+							</ul>
 						</div>
-					</div>
-					<!--密码-->
-					<div class="form-group">
-						<label class="col-md-3 control-label"> 密码：</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请输入密码">
-						</div>
-					</div>
-					<!--确认密码-->
-					<div class="form-group">
-						<label  class="col-md-3 control-label"> 确认密码：</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请再次输入密码">
-						</div>
-					</div>
-					
-					
+					</li>
+					<li class="li-split">|</li>
+					<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
 
-					<!--提交按钮-->
-					<div class="form-group">
-						<label class="col-md-3 control-label"></label>
-						<div class="col-md-8">
-							<input  class="btn btn-primary" type="button" value="立即注册" />
+				</ul>
 
-							<span class="pull-right"><small>已经有账号？</small><a href="login.html">登录</a></span>
-						</div>
-					</div>
-
-				</form>
 			</div>
 
+		</header>
+		<!--头部结束-->
+		<!--导航 -->
+		<!--分割导航和顶部-->
+		<div class="clearfix"></div>
+		<hr />
+		<div class="col-md-12 top-nav">
+			<div class="col-md-6">
+				<ul class="nav nav-pills">
+					<li>
+						<a href="#"></a>
+					</li>
+					<li class="active"><a href="index.html"><span class="fa fa-home"></span></a></li>
+					<li><a href="#">秒杀</a></li>
+					<li><a href="#">优惠券</a></li>
+					<li><a href="#">学子VIP</a></li>
+					<li><a href="#">外卖</a></li>
+					<li><a href="#">超市</a></li>
+				</ul>
+
+			</div>
+			<div class="col-md-6">
+
+				<form action="search.html" class="form-inline" role="form" style="float: right;">
+					<div class="form-group">
+						<input type="text" class="form-control" id="search" name="search" placeholder="请输入商品名称进行搜索">
+					</div>
+
+					<button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
+				</form>
+
+			</div>
 		</div>
+		<!--导航结束-->
+		<div class="text-center">
+
+			<img src="../images/index/500_img1.png" />
+			<img src="../images/index/500_img2.png" />
+
+		</div>
+		<div class="text-center">
+
+			服务器出错了！
+			<br />
+			<a href="index.html">回首页>></a>
+
+		</div>
+
 		<!--页脚开始-->
+		<div class="clearfix"></div>
 		<footer class="footer">
 			<!-- 品质保障，私人定制等-->
 			<div class="text-center rights container">
@@ -133,7 +167,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="col-md-5">
-						<p>绿色农场客户端</p>
+						<p>学子商城客户端</p>
 						<img src="../images/index/ios.png" class="lf">
 						<img src="../images/index/android.png" alt="" class="lf" />
 					</div>
@@ -144,7 +178,7 @@
 			</div>
 			<!-- 页面底部-备案号 #footer -->
 			<div class="col-md-12 text-center bottom">
-				Copyright © 2018 Nchu.cn All Rights Reserved 京ICP备xxxxxxxx号-56 <a target="_blank" style="font-size: 12px" href="http://www.ruanku.cn/">武汉软酷网络科技有限公司</a> 版权所有
+				Copyright © 2018 Tedu.cn All Rights Reserved 京ICP备08000853号-56 <a target="_blank" style="font-size: 12px" href="http://www.tedu.cn/">达内时代科技集团有限公司</a> 版权所有
 			</div>
 
 		</footer>
