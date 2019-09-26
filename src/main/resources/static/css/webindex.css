@@ -39,12 +39,13 @@
 	background-color: #4288c3;
 	color: #ffffff;
 	border-radius: 5px;
+	font-size: 20px;
 }
 
 /*主页一级分类菜单项 li*/
 
 .index-menu li {
-	line-height: 18px;
+	line-height: 150px;
 	height: 18px;
 	text-align: center;
 	cursor: pointer;
