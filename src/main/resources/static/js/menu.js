@@ -180,7 +180,8 @@ $(function() {
 	var lih = (lunh - 10) / 19;
 
 	//确定导航高度
-	$(".index-menu li").css("height", lih + "px")
+	// $(".index-menu li").css("height", lih + "px")
+	$(".index-menu li").css("height", "200px")
 
 	//确定按钮位置	
 
