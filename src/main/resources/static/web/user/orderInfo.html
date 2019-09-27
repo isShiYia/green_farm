@@ -6,17 +6,17 @@
 		<meta charset="utf-8" />
 		<title>绿色农场</title>
 		<!--导入核心文件-->
-		<script src="../bootstrap3/js/holder.js"></script>
-		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
-		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
-		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<script src="../../bootstrap3/js/holder.js"></script>
+		<link href="../../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../../bootstrap3/js/bootstrap.js"></script>
 		<!-- 字体图标 -->
-		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
-		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="../css/top.css" />
-		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
-		<link rel="stylesheet" type="text/css" href="../css/orderConfirm.css" />
-		<script src="../js/orderConfirm.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/orderInfo.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/order.css" />
 	</head>
 
 	<body>
@@ -25,7 +25,7 @@
 			<!--绿色农场logo-->
 			<div class="col-md-3">
 				<a href="index.html">
-					<img src="../images/index/stumalllogo.png" />
+					<img src="../../images/index/stumalllogo.png" />
 				</a>
 			</div>
 			<!--快捷选项-->
@@ -94,62 +94,98 @@
 			</div>
 		</div>
 		<!--导航结束-->
+
 		<div class="col-md-offset-1 col-md-10">
-			<div class="col-md-4">
-				<div class="col-md-12 order-bar-undo">
-					1.确认订单信息
-					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
-				</div>
+			<div class="col-md-12">
+
+				<b>订单详情：</b>
 
 			</div>
-			<div class="col-md-4">
-				<div class="col-md-12 order-bar-active">
-					2.在线支付
-					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
-				</div>
+
+			<div class="col-md-12 state-bar">
+				订单号：1101000301 ，当前状态：等待收货
 			</div>
-			<div class="col-md-4">
-				<div class="col-md-12 order-bar-undo">
-					3.付款成功
-				</div>
+
+			<div class="col-md-12">
+				<ol class="order-flow">
+					<li class="order-success">1.提交订单 <small>2018-12-2 20:32:17</small> <span class="fa fa-check-circle"></span></li>
+					<li class="order-success">2.付款成功 <small>2018-12-2 20:35:03</small> <span class="fa fa-check-circle"></span></li>
+					<li class="order-success">3.商城发货 <small>2018-12-3 08:13:34</small> <span class="fa fa-check-circle"></span></li>
+					<li>4.用户收货</li>
+					<li>5.购物评价</li>
+
+				</ol>
+			</div>
+
+			<div class="col-md-12">
+				<h4>订单详情：</h4>
+				<hr/> 收货人姓名：八戒，邮政编码：100190，联系电话： 1380***1234
+				<br /> 收货地址：北京市房山区高老庄3排6号
+
 			</div>
 			<div class="col-md-12">
-				<form role="form">
-					<div class="form-group">
-						
-						<label for="name">
-							<h4>选择支付方式：</h4></label>
-						
-						
-						<div class="text-center">
-							<label class="radio-inline">
-								<input type="radio" name="optionsRadios" id="optionsRadios1" checked="checked"> 支付宝
-							</label>
-						
-							<label  class="radio-inline">
-								<input type="radio" name="optionsRadios" id="optionsRadios2" > 微信
-							</label>
-						
-							<label  class="radio-inline">
-								<input type="radio" name="optionsRadios" id="optionsRadios3" > 网银
-							</label>
-						
-							<label  class="radio-inline">
-								<input type="radio" name="optionsRadios" id="optionsRadios4" > 货到付款
-							</label>
-						</div>
+				<h4>物流信息：</h4>
+				<hr/> 发货时间：2018-12-3 08:13:34
+				<br /> 物流公司：顺丰快递
 
-					</div>
-					<div>订单号：1101000301，支付金额¥5298，收款方达内学子商城</div>
+				<br /> 快递单号：301111303203048
 
-					<div class="pay-bar">
-						<a href="cart.html">返回购物车</a>
-						<span class="pull-right"><h3>¥5298.00 <input type="button" value="确认付款" class="btn btn-primary btn-lg link-success"/></h3>	</span>
-					</div>
+				<br /> 物流信息：
 
-				</form>
+				<br /> 2018-12-3 08:13:34 您的快递在【北京国贸分拣中心】分拣完毕
+				<br /> 2018-12-3 08:39:50 您的快递在【北京国贸分拣中心】准备装车
+				<br /> 2018-12-3 12:20:07 您的快递到达【北京中关村分拣中心】
+				<br />
 
 			</div>
+			<div class="col-md-12">
+				<h4>商品详情：</h4>
+				<hr/>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+
+						<h4 class="panel-title">
+               			订单号：1101000301，下单时间：2018-12-2 20:32:17 ， 收货人：八戒
+            	</h4>
+					</div>
+					<div class="panel-body">
+						<table class="orders-table" width="100%">
+							<thead>
+								<tr>
+									<th width="110"></th>
+									<th width="45%">商品</th>
+									<th width="20%">单价</th>
+									<th width="18%">数量</th>
+									<th width="20%">小计</th>
+									
+								</tr>
+							</thead>
+							<tbody class="orders-body">
+								<tr>
+
+									<td><img src="../../images/portal/12DELLXPS13-silvery/collect.png" width="110" /></td>
+									<td>联想(Lenovo)小新Air13 Pro 13.3英寸14.8mm超轻薄笔记本电脑</td>
+									<td>¥<span>5298</span></td>
+									<td>1件</td>
+									<td>¥<span>5298</span></td>
+									
+								</tr>
+
+							</tbody>
+						</table>
+						<div>
+							<span class="pull-right">订单总金额：¥5298</span>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-12">
+				<a href="orders.html">返回</a>
+				
+			</div>
+
 		</div>
 
 		<!--页脚开始-->
@@ -179,8 +215,8 @@
 			<!--联系我们、下载客户端等-->
 			<div class="container beforeBottom">
 				<div class="col-md-offset-1 col-md-3">
-					<div><img src="../images/index/stumalllogo.png" alt="" class="footLogo" /></div>
-					<div><img src="../images/index/footerFont.png" alt="" /></div>
+					<div><img src="../../images/index/stumalllogo.png" alt="" class="footLogo" /></div>
+					<div><img src="../../images/index/footerFont.png" alt="" /></div>
 
 				</div>
 				<div class="col-md-4 callus text-center">
@@ -214,11 +250,11 @@
 				<div class="col-md-4">
 					<div class="col-md-5">
 						<p>绿色农场客户端</p>
-						<img src="../images/index/ios.png" class="lf">
-						<img src="../images/index/android.png" alt="" class="lf" />
+						<img src="../../images/index/ios.png" class="lf">
+						<img src="../../images/index/android.png" alt="" class="lf" />
 					</div>
 					<div class="col-md-6">
-						<img src="../images/index/erweima.png">
+						<img src="../../images/index/erweima.png">
 					</div>
 				</div>
 			</div>

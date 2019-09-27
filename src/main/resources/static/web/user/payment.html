@@ -6,17 +6,17 @@
 		<meta charset="utf-8" />
 		<title>绿色农场</title>
 		<!--导入核心文件-->
-		<script src="../bootstrap3/js/holder.js"></script>
-		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
-		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
-		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<script src="../../bootstrap3/js/holder.js"></script>
+		<link href="../../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../../bootstrap3/js/bootstrap.js"></script>
 		<!-- 字体图标 -->
-		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
-		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="../css/top.css" />
-		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
-		<link rel="stylesheet" type="text/css" href="../css/orderConfirm.css" />
-		<script src="../js/orderConfirm.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="../../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/orderConfirm.css" />
+		<script src="../../js/orderConfirm.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -25,7 +25,7 @@
 			<!--绿色农场logo-->
 			<div class="col-md-3">
 				<a href="index.html">
-					<img src="../images/index/stumalllogo.png" />
+					<img src="../../images/index/stumalllogo.png" />
 				</a>
 			</div>
 			<!--快捷选项-->
@@ -103,44 +103,55 @@
 
 			</div>
 			<div class="col-md-4">
-				<div class="col-md-12 order-bar-undo">
+				<div class="col-md-12 order-bar-active">
 					2.在线支付
 					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
 				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="col-md-12 order-bar-active">
+				<div class="col-md-12 order-bar-undo">
 					3.付款成功
 				</div>
 			</div>
 			<div class="col-md-12">
 				<form role="form">
 					<div class="form-group">
-
+						
 						<label for="name">
-							<h4>支付结果：</h4></label>
-
-						<div>订单号：1101000301，支付金额¥5298，收款方达内学子商城</div>
-						<hr/>
-
-						<div class="text-center pay-res">
-							<span class="fa fa-check-square-o pay-res-icon"></span>支付成功
-
-						</div>
+							<h4>选择支付方式：</h4></label>
+						
+						
 						<div class="text-center">
-							达内学子商城不会以系统异常、订单升级为由，要求你点击任何链接进行退款操作
+							<label class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios1" checked="checked"> 支付宝
+							</label>
+						
+							<label  class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios2" > 微信
+							</label>
+						
+							<label  class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios3" > 网银
+							</label>
+						
+							<label  class="radio-inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios4" > 货到付款
+							</label>
 						</div>
 
-						<div class="pay-bar">
-							<a href="orders.html">查看订单</a>
+					</div>
+					<div>订单号：1101000301，支付金额¥5298，收款方达内学子商城</div>
 
-						</div>
+					<div class="pay-bar">
+						<a href="cart.html">返回购物车</a>
+						<span class="pull-right"><h3>¥5298.00 <input type="button" value="确认付款" class="btn btn-primary btn-lg link-success"/></h3>	</span>
+					</div>
 
 				</form>
 
-				</div>
 			</div>
 		</div>
+
 		<!--页脚开始-->
 		<div class="clearfix"></div>
 		<footer class="footer">
@@ -168,8 +179,8 @@
 			<!--联系我们、下载客户端等-->
 			<div class="container beforeBottom">
 				<div class="col-md-offset-1 col-md-3">
-					<div><img src="../images/index/stumalllogo.png" alt="" class="footLogo" /></div>
-					<div><img src="../images/index/footerFont.png" alt="" /></div>
+					<div><img src="../../images/index/stumalllogo.png" alt="" class="footLogo" /></div>
+					<div><img src="../../images/index/footerFont.png" alt="" /></div>
 
 				</div>
 				<div class="col-md-4 callus text-center">
@@ -203,11 +214,11 @@
 				<div class="col-md-4">
 					<div class="col-md-5">
 						<p>绿色农场客户端</p>
-						<img src="../images/index/ios.png" class="lf">
-						<img src="../images/index/android.png" alt="" class="lf" />
+						<img src="../../images/index/ios.png" class="lf">
+						<img src="../../images/index/android.png" alt="" class="lf" />
 					</div>
 					<div class="col-md-6">
-						<img src="../images/index/erweima.png">
+						<img src="../../images/index/erweima.png">
 					</div>
 				</div>
 			</div>
