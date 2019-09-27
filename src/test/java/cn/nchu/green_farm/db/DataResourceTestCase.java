@@ -22,6 +22,6 @@ public class DataResourceTestCase {
 
     @Test
     public void getConnection() throws SQLException {
-        System.out.println(dataSource.getConnection());
+        System.err.println(dataSource.getConnection());
     }
 }
