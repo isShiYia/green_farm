@@ -6,15 +6,17 @@
 		<meta charset="utf-8" />
 		<title>绿色农场</title>
 		<!--导入核心文件-->
-		<script src="../bootstrap3/js/holder.js"></script>
-		<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
-		<script src="../bootstrap3/jquery-1.9.1.min.js"></script>
-		<script src="../bootstrap3/js/bootstrap.js"></script>
+		<script src="../../bootstrap3/js/holder.js"></script>
+		<link href="../../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<script src="../../bootstrap3/jquery-1.9.1.min.js"></script>
+		<script src="../../bootstrap3/js/bootstrap.js"></script>
 		<!-- 字体图标 -->
-		<link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
-		<link rel="stylesheet" type="text/css" href="../css/layout.css" />
-		<link rel="stylesheet" type="text/css" href="../css/top.css" />
-		<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+		<link rel="stylesheet" href="../../bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/top.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/orderConfirm.css" />
+		<script src="../../js/orderConfirm.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -23,13 +25,13 @@
 			<!--绿色农场logo-->
 			<div class="col-md-3">
 				<a href="index.html">
-					<img src="../images/index/stumalllogo.png" />
+					<img src="../../images/index/stumalllogo.png" />
 				</a>
 			</div>
 			<!--快捷选项-->
-			<div class="col-md-9 top-item" >
-				
-				<ul class="list-inline" style="float: right;" >
+			<div class="col-md-9 top-item">
+
+				<ul class="list-inline" style="float: right;">
 
 					<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
 					<li class="li-split">|</li>
@@ -55,7 +57,7 @@
 					<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登录</a></li>
 
 				</ul>
-				
+
 			</div>
 
 		</header>
@@ -92,10 +94,54 @@
 			</div>
 		</div>
 		<!--导航结束-->
-		
-		
-		
-			<!--页脚开始-->
+		<div class="col-md-offset-1 col-md-10">
+			<div class="col-md-4">
+				<div class="col-md-12 order-bar-undo">
+					1.确认订单信息
+					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
+				</div>
+
+			</div>
+			<div class="col-md-4">
+				<div class="col-md-12 order-bar-undo">
+					2.在线支付
+					<span class="pull-right"><span class="fa fa-chevron-right"></span></span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="col-md-12 order-bar-active">
+					3.付款成功
+				</div>
+			</div>
+			<div class="col-md-12">
+				<form role="form">
+					<div class="form-group">
+
+						<label for="name">
+							<h4>支付结果：</h4></label>
+
+						<div>订单号：1101000301，支付金额¥5298，收款方达内学子商城</div>
+						<hr/>
+
+						<div class="text-center pay-res">
+							<span class="fa fa-times-rectangle-o pay-res-icon"></span>支付失败
+
+						</div>
+						<div class="text-center">
+							达内学子商城不会以系统异常、订单升级为由，要求你点击任何链接进行退款操作
+						</div>
+
+						<div class="pay-bar">
+							<a href="index.html">返回</a>
+
+						</div>
+
+				</form>
+
+				</div>
+			</div>
+		</div>
+		<!--页脚开始-->
 		<div class="clearfix"></div>
 		<footer class="footer">
 			<!-- 品质保障，私人定制等-->
@@ -122,8 +168,8 @@
 			<!--联系我们、下载客户端等-->
 			<div class="container beforeBottom">
 				<div class="col-md-offset-1 col-md-3">
-					<div><img src="../images/index/stumalllogo.png" alt="" class="footLogo" /></div>
-					<div><img src="../images/index/footerFont.png" alt="" /></div>
+					<div><img src="../../images/index/stumalllogo.png" alt="" class="footLogo" /></div>
+					<div><img src="../../images/index/footerFont.png" alt="" /></div>
 
 				</div>
 				<div class="col-md-4 callus text-center">
@@ -157,11 +203,11 @@
 				<div class="col-md-4">
 					<div class="col-md-5">
 						<p>绿色农场客户端</p>
-						<img src="../images/index/ios.png" class="lf">
-						<img src="../images/index/android.png" alt="" class="lf" />
+						<img src="../../images/index/ios.png" class="lf">
+						<img src="../../images/index/android.png" alt="" class="lf" />
 					</div>
 					<div class="col-md-6">
-						<img src="../images/index/erweima.png">
+						<img src="../../images/index/erweima.png">
 					</div>
 				</div>
 			</div>
