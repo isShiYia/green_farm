@@ -1,43 +1,13 @@
 package cn.nchu.green_farm.entity;
 
 /**
+ * 普通用户
  * @author Choococo
  */
-public class User {
+public class User extends BaseEntity {
 
-    private Integer id;
-    private String name;
-    private String password;
+    Integer id;
+    String username;
 
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                '}';
-    }
 }
