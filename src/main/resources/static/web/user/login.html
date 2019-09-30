@@ -36,19 +36,19 @@
 				<h4>用户登录<span class="pull-right"><a style="font-size: 14px;text-decoration: none;" href="../business/businessLogin.html">商家入驻&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></span></h4>
 				<hr />
 				<!--表单开始-->
-				<form action="index.html" class="form-horizontal" role="form">
+				<form id="form-login" class="form-horizontal" role="form">
 					<!--用户名-->
 					<div class="form-group">
 						<label for="username" class="col-md-3 control-label">用户账号：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="username"  placeholder="请输入用户名">
+							<input name="username" type="text" class="form-control" id="username"  placeholder="请输入用户名">
 						</div>
 					</div>
 					<!--密码-->
 					<div class="form-group">
 						<label for="password" class="col-md-3 control-label"> 密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="password"  placeholder="请输入密码">
+							<input name="password" type="text" class="form-control" id="password"  placeholder="请输入密码">
 						</div>
 					</div>
 					<!-- 记住我-->
@@ -69,7 +69,7 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-8">
-							<input id="loginBtn" class="btn btn-success" type="submit" value="用户登录" />
+							<input id="btn-login" class="btn btn-success" type="button" value="用户登录" />
 
 							<span class="pull-right"><small>还没有账号？</small><a href="register.html">注册</a></span>
 						</div>
@@ -128,7 +128,7 @@
 					<div class="col-md-4">
 						<ul>
 							<li><a href="#"><h5>关于我们</h5></a></li>
-							<li><a href="#">关于达内</a></li>
+							<li><a href="#">关于软酷</a></li>
 							<li><a href="#">联系我们</a></li>
 							<li>
 								<span class="fa fa-wechat"></span>
@@ -155,6 +155,32 @@
 
 		</footer>
 		<!--页脚结束-->
+	<script type="text/javascript">
+		$("#btn-login").click(function () {
+			var url ="../../user/login.do";
+			var data = $("#form-login").serialize();
+			$.ajax({
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function (json) {
+					if (json.state == 200) {
+						alert("登录成功!");
+						location.href = "index.html";
+						// 将头像数据保存到cookies中
+						$.cookie("avatar",json.data.avatar,{
+							expires : 7
+						});
+						console.log("登录成功，将头像路径存到Cookie："+ $.cookie("avatar"));
+					} else {
+						alert(json.message);
+					}
+				}
+			});
+		});
+
+	</script>
 	</body>
 
 </html>

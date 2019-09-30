@@ -11,25 +11,25 @@ public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 4229314630996139628L;
 
-    private String createUser;
-    private Date createTime;
+    private String createdUser;
+    private Date createdTime;
     private String modifiedUser;
     private Date modifiedTime;
 
-    public String getCreateUser() {
-        return createUser;
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
+    public void setCreatedUser(String createdUser) {
+        this.createdUser = createdUser;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     public String getModifiedUser() {
@@ -46,5 +46,15 @@ public class BaseEntity implements Serializable {
 
     public void setModifiedTime(Date modifiedTime) {
         this.modifiedTime = modifiedTime;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "createdUser='" + createdUser + '\'' +
+                ", createdTime=" + createdTime +
+                ", modifiedUser='" + modifiedUser + '\'' +
+                ", modifiedTime=" + modifiedTime +
+                '}';
     }
 }
