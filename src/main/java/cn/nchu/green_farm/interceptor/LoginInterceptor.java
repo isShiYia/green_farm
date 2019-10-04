@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 			throws Exception {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("uid") == null) {
-			response.sendRedirect("../web/login.html");
+			response.sendRedirect("../user/login.html");
 			// 		拦截
 			return false;
 		} else {
