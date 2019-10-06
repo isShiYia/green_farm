@@ -14,15 +14,15 @@ public class Address extends BaseEntity {
     /**收货人*/
     private String name;
     /**省，例如：110000*/
-    private Integer province;
+    private String province;
     /**市*/
-    private Integer city;
+    private String city;
     /**区*/
-    private Integer area;
+    private String area;
     /**省市区的中文名称，例如：河北省石家庄市和平区*/
     private String district;
     /**邮编*/
-    private Integer zip;
+    private String zip;
     /**详细地址*/
     private String address;
     /**手机*/
@@ -58,27 +58,27 @@ public class Address extends BaseEntity {
         this.name = name;
     }
 
-    public Integer getProvince() {
+    public String getProvince() {
         return province;
     }
 
-    public void setProvince(Integer province) {
+    public void setProvince(String province) {
         this.province = province;
     }
 
-    public Integer getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(Integer city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public Integer getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(Integer area) {
+    public void setArea(String area) {
         this.area = area;
     }
 
@@ -90,11 +90,11 @@ public class Address extends BaseEntity {
         this.district = district;
     }
 
-    public Integer getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(Integer zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
@@ -144,11 +144,11 @@ public class Address extends BaseEntity {
                 "id=" + id +
                 ", uid=" + uid +
                 ", name='" + name + '\'' +
-                ", province=" + province +
-                ", city=" + city +
-                ", area=" + area +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
                 ", district='" + district + '\'' +
-                ", zip=" + zip +
+                ", zip='" + zip + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", tel='" + tel + '\'' +
