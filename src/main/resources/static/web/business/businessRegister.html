@@ -34,26 +34,26 @@
 				<h4>商家入驻</h4>
 				<hr />
 				<!--表单开始-->
-				<form   class="form-horizontal" role="form">
+				<form  id="form-reg" class="form-horizontal" role="form">
 					<!--用户名-->
 					<div class="form-group">
 						<label  class="col-md-3 control-label">商家账号：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请输入用户名">
+							<input type="text" class="form-control"  placeholder="请输入用户名" name="businessName">
 						</div>
 					</div>
 					<!--密码-->
 					<div class="form-group">
 						<label class="col-md-3 control-label"> 密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请输入密码">
+							<input type="password" class="form-control"  placeholder="请输入密码" name="password">
 						</div>
 					</div>
 					<!--确认密码-->
 					<div class="form-group">
 						<label  class="col-md-3 control-label"> 确认密码：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请再次输入密码">
+							<input type="password" class="form-control"  placeholder="请再次输入密码">
 						</div>
 					</div>
 
@@ -61,14 +61,14 @@
 					<div class="form-group">
 						<label  class="col-md-3 control-label">邮&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp箱：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请输入邮箱">
+							<input type="text" class="form-control"  placeholder="请输入邮箱" name="email">
 						</div>
 					</div>
 					<!--用户名-->
 					<div class="form-group">
 						<label  class="col-md-3 control-label">电&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control"  placeholder="请输入电话号码">
+							<input type="text" class="form-control"  placeholder="请输入电话号码" name="phone">
 						</div>
 					</div>
 					<!--用户名-->
@@ -76,7 +76,7 @@
 						<label  class="col-md-3 control-label">性&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：</label>
 						<div class="col-md-8">
 							<label class="radio-inline">
-								<input type="radio" name="gender" value="0" checked>男
+								<input type="radio" name="gender" value="0" >男
 							</label>
 							<label class="radio-inline">
 								<input type="radio" name="gender" value="1">女
@@ -90,9 +90,11 @@
 							<img src="../../images/index/user.jpg" class="img-responsive" />
 						</div>-->
 						<!--<div class="clearfix"></div>-->
+						<form>
 						<div class="col-md-4">
-								<input type="file">
+								<input type="file" name="theLicense">
 						</div>
+						</form>
 					</div>
 					<!--<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
@@ -104,7 +106,7 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-8">
-							<input  class="btn btn-warning" type="button" value="立即注册" />
+							<input id="btn-reg" class="btn btn-warning" type="button" value="立即注册" />
 
 							<span class="pull-right"><small>已经有账号？</small><a href="businessLogin.html">登录</a></span>
 						</div>
@@ -189,6 +191,56 @@
 
 		</footer>
 		<!--页脚结束-->
+		<script type="text/javascript">
+			// 为注册按钮绑定单击事件
+			$("#btn-reg").click(function() {
+				var url = "../../business/reg.do";
+				var data = $("#form-reg").serialize();
+				console.log("注册参数：" + data);
+				$.ajax({
+					"url": url,
+					"data": data,
+					"type": "POST",
+					"dataType": "json",
+					"success": function (json) {
+						if (json.state = 200) {
+							alert("注册成功!");
+							location.href = "businessLogin.html";
+						} else {
+							alert(json.message);
+						}
+					}
+				});
+			});
+
+			// $("#btn-reg").click(
+			// 		function () {
+			// 			var uploadFile = new FormData($("#form-reg")[0]);
+			// 			console.log(uploadFile);
+			// 			var url = "../../business/reg.do";
+			// 			$.ajax({
+			// 				url:url,
+			// 				type:"post",
+			// 				data:uploadFile,
+			// 				cache: false,
+			// 				dataType:'json',
+			// 				contentType: false,
+			// 				//不设置内容类型
+			// 				processData: false,
+			// 				//不处理数据
+			// 						"success": function (json) {
+			// 							//				alert("注册成功!");
+			// 							location.href = "businessLogin.html";
+			//
+			// 							alert(json.message);
+			// 					}
+			//
+			// 			});
+			// 		}
+			//
+			// );
+
+		</script>
 	</body>
 
 </html>
