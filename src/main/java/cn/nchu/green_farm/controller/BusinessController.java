@@ -128,8 +128,6 @@ public class BusinessController extends BaseController {
         businessService.updataPassword(getBidFromSession(session),newPassword,oldPassword);
         return new ResponseResult<>(SUCCESS);
 
-
-        ////
     }
 
     /*
