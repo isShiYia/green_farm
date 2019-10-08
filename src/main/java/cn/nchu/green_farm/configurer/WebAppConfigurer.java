@@ -19,24 +19,24 @@ public class WebAppConfigurer implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// 黑名单
-//		List<String> pathPatterns = new ArrayList<String>();
-//		pathPatterns.add("/user/**");
-//		pathPatterns.add("/web/**");
+		List<String> pathPatterns = new ArrayList<String>();
+		pathPatterns.add("/user/**");
+		pathPatterns.add("/web/**");
 //		pathPatterns.add("/address/**");
 //		pathPatterns.add("/cart/**");
 //		pathPatterns.add("/order/**");
-//		// 白名单
-//		List<String> excludePathPatterns = new ArrayList<String>();
-//		excludePathPatterns.add("/user/reg.do");
-//		excludePathPatterns.add("/user/login.do");
-//		excludePathPatterns.add("/web/register.html");
-//		excludePathPatterns.add("/web/login.html");
-//		excludePathPatterns.add("/web/index.html");
-//		excludePathPatterns.add("/web/product.html");
-//		// 注册
-//		registry.addInterceptor(new LoginInterceptor())
-//		.addPathPatterns(pathPatterns)
-//		.excludePathPatterns(excludePathPatterns);
-//
+		// 白名单
+		List<String> excludePathPatterns = new ArrayList<String>();
+		excludePathPatterns.add("/user/reg.do");
+		excludePathPatterns.add("/user/login.do");
+		excludePathPatterns.add("/web/register.html");
+		excludePathPatterns.add("/web/login.html");
+		excludePathPatterns.add("/web/index.html");
+		excludePathPatterns.add("/web/product.html");
+		// 注册
+		registry.addInterceptor(new LoginInterceptor())
+		.addPathPatterns(pathPatterns)
+		.excludePathPatterns(excludePathPatterns);
+
 	}
 }
