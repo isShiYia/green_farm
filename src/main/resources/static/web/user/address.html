@@ -52,8 +52,8 @@
 									<li><a href="userdata.html">个人资料</a></li>
 									<li><a href="upload.html">上传头像</a></li>
 									<li><a href="address.html">收货管理	</a></li>
-									<li><a href="../business/addRent.html">租赁管理	</a></li>
-									<li><a href="../business/productManager.html">产品管理	</a></li>
+									<!--<li><a href="../business/addRent.html">租赁管理	</a></li>
+									<li><a href="../business/productManager.html">产品管理	</a></li>-->
 								</ul>
 							</div>
 						</li>
@@ -124,8 +124,8 @@
 								<div><a href="userdata.html">个人资料</a></div>
 								<div><a href="upload.html">上传头像</a></div>
 								<div><a href="address.html"><b>收货管理</b></a></div>
-								<div><a href="../business/addRent.html">租赁管理</a></div>
-								<div><a href="../business/productManager.html">产品管理</a></div>
+								<!--<div><a href="../business/addRent.html">租赁管理</a></div>
+								<div><a href="../business/productManager.html">产品管理</a></div>-->
 							</div>
 						</div>
 					</div>
@@ -139,8 +139,8 @@
 						<li><a href="userdata.html">个人资料</a></li>
 						<li><a href="upload.html">上传头像</a></li>
 						<li class="active"><a href="#">收货管理</a></li>
-						<li><a href="../business/addRent.html">租赁管理</a></li>
-						<li><a href="../business/productManager.html">产品管理</a></li>
+					<!--	<li><a href="../business/addRent.html">租赁管理</a></li>
+						<li><a href="../business/productManager.html">产品管理</a></li>-->
 					</ul>
 					<div class="panel-body">
 						<!--地址显示-->
@@ -155,7 +155,7 @@
 									<th colspan="3">操作</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="list"><!--添加id属性，用于清空数据-->
 								<tr>
 									<td>家</td>
 									<td>八戒</td>
@@ -185,7 +185,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<a href="../business/addRentInfo.html" class="btn btn-sm btn-primary"><span class="fa fa-plus"></span>新增农场信息</a>
+						<a href="addAddress.html" class="btn btn-sm btn-primary"><span class="fa fa-plus"></span>新增收货地址</a>
 					</div>
 				</div>
 			</div>
@@ -249,7 +249,7 @@
 									<p>关于我们</p>
 								</a>
 							</li>
-							<li><a href="#">关于达内</a></li>
+							<li><a href="#">关于软酷</a></li>
 							<li><a href="#">联系我们</a></li>
 							<li>
 								<span class="fa fa-wechat"></span>
@@ -260,7 +260,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="col-md-5">
-						<p>学子商城客户端</p>
+						<p>绿色农场客户端</p>
 						<img src="../../images/index/ios.png" class="lf">
 						<img src="../../images/index/android.png" alt="" class="lf" />
 					</div>
@@ -271,10 +271,53 @@
 			</div>
 			<!-- 页面底部-备案号 #footer -->
 			<div class="col-md-12 text-center bottom">
-				Copyright © 2018 Tedu.cn All Rights Reserved 京ICP备08000853号-56 <a target="_blank" href="http://www.tedu.cn/">达内时代科技集团有限公司</a> 版权所有
+				Copyright © 2018 Nchu.cn All Rights Reserved 京ICP备xxxxxxxx号-56 <a target="_blank" style="font-size: 12px" href="http://www.ruanku.cn/">武汉软酷网络科技有限公司</a> 版权所有
 			</div>
 		</footer>
 		<!--页脚结束-->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// 加载当前用户的收货地址列表
+			showList();
+		});
+
+		// 记载收货地址列表
+		function showList() {
+			var url = "../../address/list";
+			$.ajax({
+				"url" : url,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function (json) {
+					// 常规操作，首先要清空页面上的数据
+					$("#list").empty();
+					// 拿出json中的数据
+					var list = json.data;
+					for (var i = 0; i < list.length; i++) {
+						// 常规输出,因为数据比较多，只输出2个就可以
+						console.log(list[i].name+"-"+list.district);
+						// 对值进行赋值
+						var html = '<tr>'
+								+'<td>#{tag}</td>'
+								+'<td>#{name}</td>'
+								+'<td>#{district}</td>'
+								+'<td>#{phone}</td>'
+								+'<td><a class="btn btn-xs btn-info" ><span class="fa fa-edit"></span> 修改</a></td>'
+								+'<td><a class="btn btn-xs add-del btn-info" href="javascript:deleteById(#{id});" ><span class="fa fa-trash-o"></span> 删除</a></td>'
+								+'<td><a #{is_default} class="btn btn-xs add-def btn-default" href="javascript:setDefault(#{id});">设为默认</a></td>'
+								+'</tr>';
+						html = html.replace(/#{tag}/g,list[i].tag);
+						html = html.replace(/#{name}/g,list[i].name);
+						html = html.replace(/#{district}/g,list[i].district);
+						html = html.replace(/#{phone}/g,list[i].phone);
+
+
+						$("#list").append(html);
+					}
+				}
+			});
+		}
+	</script>
 	</body>
 
 </html>

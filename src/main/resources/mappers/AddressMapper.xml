@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.nchu.green_farm.mapper.AddressMapper">
+
+   <!--新增收货地址数据-->
+   <!-- Integer addnew(Address address)-->
+   <insert id="addnew" useGeneratedKeys="true" keyProperty="id" parameterType="cn.nchu.green_farm.entity.Address">
+        insert into t_address (
+            uid,name,
+            province,city,
+            area,district,
+            zip,address,
+            phone,tel,
+            tag,is_default,
+            created_user,created_time,
+            modified_user,modified_time
+        ) values (
+            #{uid},#{name},
+            #{province},#{city},
+            #{area},#{district},
+            #{zip},#{address},
+            #{phone},#{tel},
+            #{tag},#{isDefault},
+            #{createdUser},#{createdTime},
+            #{modifiedUser},#{modifiedTime}
+        )
+   </insert>
+
+
+ <!--根据用户id查询收货地址数据-->
+ <!--Integer getCountByUid(Integer uid)-->
+  <select id="getCountByUid" resultType="java.lang.Integer">
+        SELECT
+			COUNT(id)
+		FROM
+			t_address
+		WHERE
+			uid=#{uid}
+  </select>
+
+    <!--根据用户id获取收获地址列表数据-->
+    <!-- List<Address> findByUid(Integer uid)-->
+    <select id="findByUid" resultType="cn.nchu.green_farm.entity.Address">
+        SELECT
+			id,name,
+			phone,district,
+			address,tag,
+			is_default AS isDefault
+		FROM
+			t_address
+		WHERE
+			uid=#{uid}
+		ORDER BY
+		    is_default DESC,/*第一排序规则：按默认方式从1-0降序排列*/
+            modified_time DESC /*第二排序规则：按修改时间降序排列，最新修改的时间排到前面*/
+    </select>
+
+    <!--设为默认 共会用到下面三个方法-->
+
+    <!--根据用户id将用户的所有的收货地址设置为非默认 0-->
+    <!-- Integer updateNonDefault(
+            @Param("uid") Integer uid,
+            @Param("modifiedUser") String modifiedUser,
+            @Param("modifiedTime") Date modifiedTime)-->
+    <update id="updateNonDefault">
+        UPDATE
+			t_address
+		SET
+            is_default=0,
+			modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+		WHERE
+			uid=#{uid}
+
+
+    </update>
+
+    <!--将指定的收货地址设置为默认 1-->
+    <!--Integer updateDefault(@Param("id") Integer id,
+                          @Param("modifiedUser") String modifiedUser,
+                          @Param("modifiedTime") Date modifiedTime)-->
+    <update id="updateDefault">
+        UPDATE
+			t_address
+		SET
+			is_default=1,
+			modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+		WHERE
+			id=#{id}
+    </update>
+
+    <!--根据收货地址id查询匹配的收货地址数据-->
+    <!--Address findById(Integer id)-->
+    <select id="findById" resultType="cn.nchu.green_farm.entity.Address">
+        select
+            uid,name,
+            /*在后面的修改收货地址的时候，还需要把剩余的字段补全*/
+            is_default AS isDefault
+        from
+            t_address
+        where
+            id=#{id}
+    </select>
+
+ </mapper>
+

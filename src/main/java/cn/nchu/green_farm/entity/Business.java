@@ -1,18 +1,12 @@
 package cn.nchu.green_farm.entity;
 
-/**
- * 普通用户
- * @author Choococo
- */
-public class User extends BaseEntity {
-
-    private static final long serialVersionUID = 605252429465452992L;
-
-    /**用户id*/
+public class Business extends BaseEntity {
+    private static final long serialVersionUID = -6237191313025311552L;
+    /**商家id*/
     private Integer id;
-    /**用户名*/
-    private String username;
-    /**用户密码*/
+    /**商家名*/
+    private String businessName;
+    /**商家密码*/
     private String password;
     /**盐值36位*/
     private String salt;
@@ -24,8 +18,16 @@ public class User extends BaseEntity {
     private String email;
     /**头像*/
     private String avatar;
+    /*营业执照*/
+    private String license;
     /** '是否删除，0-未删除，1-已删除',*/
     private Integer isDelete;
+    /*0:审核中，1：审核通过：2：未通过*/
+    private Integer theStatus;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -35,13 +37,7 @@ public class User extends BaseEntity {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;
@@ -91,6 +87,14 @@ public class User extends BaseEntity {
         this.avatar = avatar;
     }
 
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
     public Integer getIsDelete() {
         return isDelete;
     }
@@ -99,18 +103,36 @@ public class User extends BaseEntity {
         this.isDelete = isDelete;
     }
 
+    public Integer getTheStatus() {
+        return theStatus;
+    }
+
+    public void setTheStatus(Integer theStatus) {
+        this.theStatus = theStatus;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Business{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", businessName='" + businessName + '\'' +
                 ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
                 ", gender=" + gender +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", license='" + license + '\'' +
                 ", isDelete=" + isDelete +
+                ", theStatus=" + theStatus +
                 '}';
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 }

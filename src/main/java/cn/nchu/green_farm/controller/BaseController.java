@@ -81,6 +81,8 @@ public abstract class BaseController {
 	protected Integer getUidFromSession(HttpSession session) {
 		return Integer.valueOf(session.getAttribute("uid").toString());
 	}
-	
-	
+
+	protected Integer getBidFromSession(HttpSession session) {
+		return Integer.valueOf(session.getAttribute("businessId").toString());
+	}
 }

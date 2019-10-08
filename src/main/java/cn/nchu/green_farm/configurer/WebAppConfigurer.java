@@ -29,10 +29,10 @@ public class WebAppConfigurer implements WebMvcConfigurer {
 		List<String> excludePathPatterns = new ArrayList<String>();
 		excludePathPatterns.add("/user/reg.do");
 		excludePathPatterns.add("/user/login.do");
-		excludePathPatterns.add("/web/register.html");
-		excludePathPatterns.add("/web/login.html");
-		excludePathPatterns.add("/web/index.html");
-		excludePathPatterns.add("/web/product.html");
+		excludePathPatterns.add("/web/user/register.html");
+		excludePathPatterns.add("/web/user/login.html");
+		excludePathPatterns.add("/web/user/index.html");
+		excludePathPatterns.add("/web/user/product.html");
 		// 注册
 		registry.addInterceptor(new LoginInterceptor())
 		.addPathPatterns(pathPatterns)
