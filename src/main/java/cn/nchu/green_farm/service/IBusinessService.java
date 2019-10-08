@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface IBusinessService {
     /**
-     *
      * @param business:商家数据
      * @return：商家数据
      * @throws DuplicateKeyException：违反unique约束异常

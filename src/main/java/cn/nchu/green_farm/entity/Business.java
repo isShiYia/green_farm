@@ -2,6 +2,7 @@ package cn.nchu.green_farm.entity;
 
 public class Business extends BaseEntity {
     private static final long serialVersionUID = -6237191313025311552L;
+    //
     /**商家id*/
     private Integer id;
     /**商家名*/
