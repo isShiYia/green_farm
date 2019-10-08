@@ -82,6 +82,11 @@ public abstract class BaseController {
 		return Integer.valueOf(session.getAttribute("uid").toString());
 	}
 
+	/**
+	 *
+	 * @param session
+	 * @return 当前商家登陆的id
+	 */
 	protected Integer getBidFromSession(HttpSession session) {
 		return Integer.valueOf(session.getAttribute("businessId").toString());
 	}

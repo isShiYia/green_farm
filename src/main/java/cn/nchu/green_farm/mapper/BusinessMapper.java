@@ -11,7 +11,7 @@ public interface BusinessMapper {
     /**
      *
      * @param business:商家信息
-     * @return：数据库受影响行数
+     * @return：数据库受影响的行数
      */
     Integer addnew(Business business);
 
