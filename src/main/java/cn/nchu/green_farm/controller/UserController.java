@@ -39,8 +39,6 @@ public class UserController extends BaseController {
         FILE_CONTENT_TYPES.add("image/png");
     }
 
-
-
     @Autowired
     private IUserService userService;
 
@@ -84,6 +82,7 @@ public class UserController extends BaseController {
     /*
         文件上传
      */
+
     @PostMapping("/upload.do")
     public ResponseResult<String> handleUpload(HttpSession session, @RequestParam("file") MultipartFile file) {
         // 【1】检查操作
