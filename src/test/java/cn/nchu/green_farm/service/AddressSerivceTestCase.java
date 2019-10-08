@@ -61,4 +61,44 @@ public class AddressSerivceTestCase {
 
     }
 
+    @Test
+    public void delete() {
+        try {
+            Integer uid =1;
+            Integer id = 2;
+            addressService.delete(uid, id);
+            System.err.println("OK.");
+        } catch (ServiceException e) {
+            System.err.println("错误类型:" + e.getClass().getName());
+            System.err.println("错误描述:" + e.getMessage());
+        }
+    }
+
+    @Test // 用于修改收货地址的时候显示信息
+    public void getById() {
+        try {
+            Integer id = 13; // 测试7
+            Integer uid =1;
+            Address address = addressService.getById(id, uid);
+            System.err.println("address=" + address);
+        } catch (ServiceException e) {
+            System.err.println("错误类型:" + e.getClass().getName());
+            System.err.println("错误描述:" + e.getMessage());
+        }
+    }
+
+    @Test // 用于修改收货地址的时候显示信息
+    public void changeInfo() {
+        try {
+            Address address = new Address();
+            address.setId(19);
+            String username = "spring";
+            addressService.changeInfo(address, username);
+            System.err.println("OK.");
+        } catch (ServiceException e) {
+            System.err.println("错误类型:" + e.getClass().getName());
+            System.err.println("错误描述:" + e.getMessage());
+        }
+    }
+
 }

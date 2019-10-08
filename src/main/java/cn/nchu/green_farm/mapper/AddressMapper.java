@@ -52,10 +52,7 @@ public interface AddressMapper {
      * @param uid 用户id
      * @return 受影响的行数
      */
-    Integer updateNonDefault(
-            @Param("uid") Integer uid,
-            @Param("modifiedUser") String modifiedUser,
-            @Param("modifiedTime") Date modifiedTime);
+    Integer updateNonDefault(Integer uid);
 
     /**
      * 将指定的收货地址设置为默认 1
@@ -67,10 +64,37 @@ public interface AddressMapper {
                           @Param("modifiedTime") Date modifiedTime);
 
     /**
-     * 根据收货地址id查询匹配的收货地址数据
+     * 根据收货地址id查询匹配的收货地址数据【同样第一次设计也是用于设为默认】
      * @param id 收货地址id
      * @return 匹配的收货地址的数据，如果没有则返回null
      */
     Address findById(Integer id);
+
+    /**
+     * 根据收货地址id删除收货地址
+     * @param id 收货地址id
+     * @return 受影响的行数
+     */
+    Integer deleteById(Integer id);
+
+    /**
+     * 根据用户id查询用户最后修改的收货地址的数据
+     * @param uid 用户id
+     * @return 匹配的收货地址数，如果没有则返回null
+     */
+    Address findLastModified(Integer uid);
+
+    /*
+        修改收货地址信息：
+        （1）显示 查询所有的信息，已有findById（2）修改
+     */
+
+    /**
+     * 根据收货地址id修改收货地址信息
+     * @param address 收货地址信息
+     * @return 受影响的行数
+     */
+    Integer updateInfo(Address address);
+
 
 }

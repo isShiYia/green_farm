@@ -1,10 +1,7 @@
 package cn.nchu.green_farm.service;
 
 import cn.nchu.green_farm.entity.Address;
-import cn.nchu.green_farm.service.exception.AccessDefinedException;
-import cn.nchu.green_farm.service.exception.AddressNotFoundException;
-import cn.nchu.green_farm.service.exception.InsertException;
-import cn.nchu.green_farm.service.exception.UpdateException;
+import cn.nchu.green_farm.service.exception.*;
 
 import java.util.List;
 
@@ -40,4 +37,27 @@ public interface IAddressService {
      */
     void setDefault(Integer uid, Integer id) throws UpdateException, AddressNotFoundException, AccessDefinedException;
 
+    /**
+     * 删除根据用户id和收货地址id删除用户数据
+     * @param uid 用户id
+     * @param id 收货地址id
+     * @throws DeleteException 删除数据异常
+     */
+    void delete(Integer uid, Integer id) throws DeleteException,AddressNotFoundException,AccessDefinedException;
+
+    /**
+     * 根据收获地址id获取收获地址数据
+     * @param id 收货地址id
+     * @param uid 用户id
+     * @return
+     */
+    Address getById(Integer id, Integer uid) throws AddressNotFoundException, AccessDefinedException;
+
+    /**
+     * 修改收货地址信息
+     * @param address 收货地址信息
+     * @throws AddressNotFoundException 收获地址异常
+     * @throws UpdateException 数据更新异常
+     */
+    void changeInfo(Address address, String username) throws AddressNotFoundException,UpdateException,AccessDefinedException;
 }

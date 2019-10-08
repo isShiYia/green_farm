@@ -58,9 +58,7 @@ public class AddressMapperTestCase {
     public void updateNonDefault() {
         // 将所有用户的收获地址全部设置为非默认
         Integer uid = 3;
-        String modifiedUser = "user";
-        Date modifiedTime = new Date();
-        Integer rows = addressMapper.updateNonDefault(uid, modifiedUser, modifiedTime);
+        Integer rows = addressMapper.updateNonDefault(uid);
         System.err.println("rows=" + rows);
     }
 
@@ -74,11 +72,36 @@ public class AddressMapperTestCase {
         System.err.println("rows=" + rows);
     }
 
-    @Test
+    @Test // 第一次设计用于设为默认的比对数据
     public void findById() {
-        Integer id = 4;
+        Integer id = 13;
         Address address = addressMapper.findById(id);
         System.err.println("address=" + address);
     }
+
+    @Test // 删除
+    public void deleteById() {
+        Integer id = 1;
+        Integer rows = addressMapper.deleteById(id);
+        System.err.println("rows=" + rows);
+    }
+
+    @Test
+    public void findLastModified() {
+        Integer uid = 3;
+        Address address = addressMapper.findLastModified(uid);
+        System.err.println("address= " + address);
+    }
+
+    @Test // 这里测试的数据要删除掉
+    public void updateInfo() {
+        Address address = new Address();
+        address.setId(3);
+        address.setName("小明");
+        address.setAddress("新安家园8单元601室");
+        addressMapper.updateInfo(address);
+        System.err.println("OK.");
+    }
+
 
 }
