@@ -4,10 +4,7 @@ import cn.nchu.green_farm.entity.Address;
 import cn.nchu.green_farm.service.IAddressService;
 import cn.nchu.green_farm.util.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -42,6 +39,31 @@ public class AddressController extends  BaseController {
         return new ResponseResult<>(SUCCESS, list);
     }
 
+    // http://localhost:8080/address/default/10
+    @GetMapping("/default/{id}") // 这里的id是需要显示在地址栏中的
+    public ResponseResult<Void> setDefault(HttpSession session, @PathVariable("id") Integer id) {
+        addressService.setDefault(getUidFromSession(session), id);
+        return new ResponseResult<>(SUCCESS);
+    }
 
+    @GetMapping("/delete/{id}")
+    public ResponseResult<Void> deleteById(HttpSession session, @PathVariable("id") Integer id) {
+        addressService.delete(getUidFromSession(session), id);
+        return new ResponseResult<>(SUCCESS);
+    }
 
+    // http://localhost:8080/address/info/13
+    @GetMapping("/info/{id}")
+    public ResponseResult<Address> handleInfo(HttpSession session, @PathVariable("id") Integer id) {
+        Address address = addressService.getById(id, getUidFromSession(session));
+        return new ResponseResult<>(SUCCESS, address);
+    }
+
+    // http://localhost:8080/address/change_info/19
+    @GetMapping("/change_info/{id}")
+    public ResponseResult<Void> handleChangeInfo(Address address, HttpSession session, @PathVariable("id") Integer id) {
+        address.setId(id);
+        addressService.changeInfo(address, session.getAttribute("username").toString());
+        return new ResponseResult<>(SUCCESS);
+    }
 }
