@@ -47,7 +47,7 @@ public class BusinessController extends BaseController {
     //图片路径  http://localhost:8080/license/157050174312689414258.PNG
     //商家注册控制器
     @PostMapping("/reg.do")
-//    @GetMapping("/reg.do")
+
     public ResponseResult<Business> handleReg(Business business,HttpSession session,@RequestParam("theLicense") MultipartFile uploadFile) {
         //businessService.reg(business);
         System.out.println(business);
