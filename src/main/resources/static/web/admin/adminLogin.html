@@ -4,7 +4,7 @@
 	<head>
 
 		<meta charset="utf-8" />
-		<title>绿色农场</title>
+		<title>管理员登陆-绿色农场</title>
 		<!--导入核心文件-->
 		<script src="../../bootstrap3/js/holder.js"></script>
 		<link href="../../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -30,48 +30,34 @@
 
 		</header>
 		<!--主体-->
-		<div class="container mycontent2 text-left">
+		<div class="container mycontent text-left">
 			<!--透明层 -->
 			<div class="loginDiv">
-				<h4>商家登录</h4>
+				<h4>管理员登陆</h4>
 				<hr />
 				<!--表单开始-->
 				<form id="form-login" class="form-horizontal" role="form">
-					<!--用户名-->
+					<!--管理员账号-->
 					<div class="form-group">
-						<label for="username" class="col-md-3 control-label">商家账号：</label>
+						<label for="username" class="col-md-3 control-label">管理账号：</label>
 						<div class="col-md-8">
-							<input name="businessName" type="text" class="form-control" id="username"  placeholder="请输入用户名">
+							<input name="username" type="text" class="form-control" id="username"  placeholder="请输入管理员账号">
 						</div>
 					</div>
 					<!--密码-->
 					<div class="form-group">
 						<label for="password" class="col-md-3 control-label"> 密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码：</label>
 						<div class="col-md-8">
-							<input name="password" type="password" class="form-control" id="password"  placeholder="请输入密码">
+							<input name="password" type="text" class="form-control" id="password"  placeholder="请输入密码">
 						</div>
 					</div>
-					<!-- 记住我-->
-					<div class="form-group">
-						<div class="col-md-offset-3 col-md-6">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" id="auto">自动登录
-
-								</label>
-
-							</div>
-
-						</div>
-					</div>
-
 					<!--提交按钮-->
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-8">
-							<input id="btn-login" class="btn btn-success" type="button" value="商家登录" />
+							<input id="btn-login" class="btn btn-success" type="button" value="管理员登录" />
 
-							<span class="pull-right"><small>还没有账号？</small><a href="businessRegister.html">注册</a></span>
+							<span class="pull-right"><a onclick="forgetPassword();">密码忘了？</a></span>
 						</div>
 
 					</div>
@@ -128,7 +114,7 @@
 					<div class="col-md-4">
 						<ul>
 							<li><a href="#"><h5>关于我们</h5></a></li>
-							<li><a href="#">关于达内</a></li>
+							<li><a href="#">关于软酷</a></li>
 							<li><a href="#">联系我们</a></li>
 							<li>
 								<span class="fa fa-wechat"></span>
@@ -155,33 +141,35 @@
 
 		</footer>
 		<!--页脚结束-->
-		<script type="text/javascript">
-			$("#btn-login").click(function () {
-				var url ="../../business/login.do";
-				var data = $("#form-login").serialize();
-				
-				$.ajax({
-					"url" : url,
-					"data" : data,
-					"type" : "POST",
-					"dataType" : "json",
-					"success" : function (json) {
-						if (json.state == 200) {
-							alert("登录成功!");
-							location.href = "addRent.html";
-							// 将头像数据保存到cookies中
-							$.cookie("avatar",json.data.avatar,{
-								expires : 7
-							});
-							console.log("登录成功，将头像路径存到Cookie："+ $.cookie("avatar"));
-						} else {
-							alert(json.message);
-						}
+	<script type="text/javascript">
+		function forgetPassword(){
+			alert("等死吧！")
+		}
+		$("#btn-login").click(function () {
+			var url ="../../admin/login.do";
+			var data = $("#form-login").serialize();
+			$.ajax({
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function (json) {
+					if (json.state == 200) {
+						alert("登录成功!");
+						location.href = "adminUserData.html";
+						// // 将头像数据保存到cookies中
+						// $.cookie("avatar",json.data.avatar,{
+						// 	expires : 7
+						// });
+						// console.log("登录成功，将头像路径存到Cookie："+ $.cookie("avatar"));
+					} else {
+						alert(json.message);
 					}
-				});
+				}
 			});
+		});
 
-		</script>
+	</script>
 	</body>
 
 </html>
