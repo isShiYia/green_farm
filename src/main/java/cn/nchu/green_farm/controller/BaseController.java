@@ -42,6 +42,10 @@ public abstract class BaseController {
 			// 404-密码错误
 			state = 404;
 			// return new ResponseResult<>(402, e);
+		} else if (e instanceof BusinessNotFoundException) {
+			// 405-商家数据不存在
+			state = 405;
+			// return new ResponseResult<>(402, e);
 		} else if (e instanceof InsertException) {
 			// 500-插入数据异常
 			state = 500;
