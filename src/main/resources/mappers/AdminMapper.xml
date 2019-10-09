@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.nchu.green_farm.mapper.AdminMapper">
+    <!--通过用户名查询用户数据-->
+    <!--User findByAdminName(String adminName)-->
+    <select id="findByAdminName" resultType="cn.nchu.green_farm.entity.Admin">
+     SELECT
+		id, name, password,
+		salt, isDelete
+	 FROM
+		admin
+	 WHERE
+		name=#{adminName}
+     </select>
+</mapper>
