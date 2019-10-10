@@ -16,7 +16,8 @@ public abstract class BaseController {
 	 * 正确响应的代号
 	 */
 	public static final Integer SUCCESS = 200;
-	
+	public static final Integer SUCCESSFUL = 0;
+
 	@ExceptionHandler({ServiceException.class, RequestException.class})// 异常的范围
 	@ResponseBody
 	public ResponseResult<Void> handleException(Exception e) {

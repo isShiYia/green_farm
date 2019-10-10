@@ -119,10 +119,9 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
-
 <script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-
+<!--
 <script>
     layui.use('table', function(){
         var table = layui.table;
@@ -199,6 +198,84 @@
                     layer.close(index);
                 });
             }
+        });
+    });
+</script>
+-->
+
+<script type="text/javascript">
+
+    layui.use([ 'table', 'laypage' ],function() {
+        var table = layui.table;
+        var laypage = layui.laypage;
+        element=layui.element,
+            $=layui.jquery;
+        table.render({
+            elem : '#test',
+            url : '../../admin/bus/list',
+            page : laypage,
+            limit : 5,
+            height: 750,
+            loading:true,
+            even: true, //开启隔行背景
+            size: 'lg', //小尺寸的表格
+            toolbar : '#toolbarDemo',
+            limits:[5,10,20,30],
+            title : '用户数据表'
+            ,page: laypage
+            ,cols : [ [
+                {
+                    field : 'id',
+                    title : 'ID',
+                    type : 'checkbox',
+                    fixed : 'left'
+                },
+                {
+                    field : 'businessName',
+                    title : '用户名',
+                    width : 195,
+                    edit : 'text'
+                }, {
+                    field : 'gender',
+                    title : '用户名',
+                    width : 195,
+                    edit : 'text'
+                },{
+                    field : 'phone',
+                    title : '用户名',
+                    width : 195,
+                    edit : 'text'
+                },{
+                    field : 'email',
+                    title : '用户名',
+                    width : 195,
+                    edit : 'text'
+                },{
+                    field : 'gender',
+                    title : '年龄',
+                    width : 195,
+                    edit : 'text',
+                    sort: true
+                }, {
+                    fixed : 'right',
+                    title : '操作',
+                    toolbar : '#barDemo',
+                    width : 230
+                } ] ],
+        })
+    });
+</script>
+<!--static/layui-v2.5.5/layui/layui.js-->
+<script src="../../layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
         });
     });
 </script>
