@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.nchu.green_farm.mapper.BusinessMapper">
+
+    <!--插入商家数据-->
+    <!--Integer addnew(Business business);-->
+    <insert id="addnew" keyProperty="id" useGeneratedKeys="true" parameterType="cn.nchu.green_farm.entity.Business">
+        INSERT  INTO t_business (
+            business_name, password,
+			salt, gender,
+			phone, email,
+			avatar, is_delete,
+			license,the_status,
+			created_user, created_time,
+			modified_user, modified_time
+        ) VALUES (
+            #{businessName}, #{password},
+			#{salt}, #{gender},
+			#{phone}, #{email},
+			#{avatar}, #{isDelete},
+			#{license},#{theStatus},
+			#{createdUser}, #{createdTime},
+			#{modifiedUser}, #{modifiedTime}
+        )
+     </insert>
+
+    <!--通过商家名查询商家数据-->
+    <!--Business getByBusinessName(String businessName);-->
+    <select id="getByBusinessName" resultType="cn.nchu.green_farm.entity.Business">
+     SELECT
+		id, business_name businessName, password,
+		salt, avatar,license,
+		is_delete isDelete
+		,the_status theStatus
+	 FROM
+		t_business
+	 WHERE
+		business_name=#{businessName}
+     </select>
+
+	<!--通过商家名查询商家数据-->
+	<!-- Business getById(Integer businessId);-->
+	<select id="getById" resultType="cn.nchu.green_farm.entity.Business">
+     SELECT
+		id, business_name businessName, password,
+		salt, avatar,
+		is_delete isDelete
+		,the_status theStatus
+	 FROM
+		t_business
+	 WHERE
+		id=#{businessId}
+     </select>
+
+
+	<!--通过id修改商家密码-->
+	<!--Integer updatePassword(@Param("businessId") Integer businessId,-->
+	<!--@Param("newPassword") String newPassword,-->
+	<!--@Param("modifiedUser") String modifiedUser,-->
+	<!--@Param("modifiedTime") Date modifiedTime);-->
+	<update id="updatePassword">
+		update
+			t_business
+		set
+			password=#{newPassword},
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		where
+			id=#{businessId}
+
+	</update>
+
+
+	<!--【更新商家头像】-->
+	<!--上传头像-->
+
+	<!--Integer updateAvatar(-->
+	<!--@Param("businessId") Integer businessId,-->
+	<!--@Param("avatar") String avatar,-->
+	<!--@Param("modifiedUser") String modifiedUser,-->
+	<!--@Param("modifiedTime") Date modifiedTime);-->
+	<update id="updateAvatar">
+        update
+            t_business
+        set
+            avatar=#{avatar},
+            modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+        where
+            id=#{businessId}
+    </update>
+
+
+
+</mapper>
+
+

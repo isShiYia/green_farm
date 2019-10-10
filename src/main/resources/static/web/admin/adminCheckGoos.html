@@ -18,21 +18,21 @@
     <div class="layui-header">
         <div class="layui-logo">绿色农场</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <!--        <ul class="layui-nav layui-layout-left">-->
-        <!--            <li class="layui-nav-item"><a href="">控制台</a></li>-->
-        <!--            <li class="layui-nav-item"><a href="">商品管理</a></li>-->
-        <!--            <li class="layui-nav-item"><a href="">用户</a></li>-->
-        <!--        </ul>-->
+<!--        <ul class="layui-nav layui-layout-left">-->
+<!--            <li class="layui-nav-item"><a href="">控制台</a></li>-->
+<!--            <li class="layui-nav-item"><a href="">商品管理</a></li>-->
+<!--            <li class="layui-nav-item"><a href="">用户</a></li>-->
+<!--        </ul>-->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
                     鹏弟弟
                 </a>
-                <!--                <dl class="layui-nav-child">-->
-                <!--                    <dd><a href="">基本资料</a></dd>-->
-                <!--                    <dd><a href="">安全设置</a></dd>-->
-                <!--                </dl>-->
+<!--                <dl class="layui-nav-child">-->
+<!--                    <dd><a href="">基本资料</a></dd>-->
+<!--                    <dd><a href="">安全设置</a></dd>-->
+<!--                </dl>-->
             </li>
             <li class="layui-nav-item"><a href="">注销</a></li>
         </ul>
@@ -45,7 +45,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">用户管理</a>
                     <dl class="layui-nav-child">
-                        <dd class="layui-this"><a href="#">用户列表</a></dd>
+                        <dd><a href="adminUserData.html">用户列表</a></dd>
                         <dd><a href="javascript:;">修改密码</a></dd>
                         <dd><a href="javascript:;">找回密码</a></dd>
                     </dl>
@@ -69,7 +69,7 @@
                     <a href="javascript:;">农产品管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">农产品列表</a></dd>
-                        <dd><a href="adminCheckGoos.html">上架申请</a></dd>
+                        <dd class="layui-this"><a href="#">上架申请</a></dd>
                         <dd><a href="javascript:;">数据面板</a></dd>
                     </dl>
                 </li>
@@ -119,9 +119,10 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
+
 <script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<!--
+
 <script>
     layui.use('table', function(){
         var table = layui.table;
@@ -198,84 +199,6 @@
                     layer.close(index);
                 });
             }
-        });
-    });
-</script>
--->
-
-<script type="text/javascript">
-
-    layui.use([ 'table', 'laypage' ],function() {
-        var table = layui.table;
-        var laypage = layui.laypage;
-        element=layui.element,
-            $=layui.jquery;
-        table.render({
-            elem : '#test',
-            url : '../../admin/bus/list',
-            page : laypage,
-            limit : 5,
-            height: 750,
-            loading:true,
-            even: true, //开启隔行背景
-            size: 'lg', //小尺寸的表格
-            toolbar : '#toolbarDemo',
-            limits:[5,10,20,30],
-            title : '用户数据表'
-            ,page: laypage
-            ,cols : [ [
-                {
-                    field : 'id',
-                    title : 'ID',
-                    type : 'checkbox',
-                    fixed : 'left'
-                },
-                {
-                    field : 'businessName',
-                    title : '用户名',
-                    width : 195,
-                    edit : 'text'
-                }, {
-                    field : 'gender',
-                    title : '用户名',
-                    width : 195,
-                    edit : 'text'
-                },{
-                    field : 'phone',
-                    title : '用户名',
-                    width : 195,
-                    edit : 'text'
-                },{
-                    field : 'email',
-                    title : '用户名',
-                    width : 195,
-                    edit : 'text'
-                },{
-                    field : 'gender',
-                    title : '年龄',
-                    width : 195,
-                    edit : 'text',
-                    sort: true
-                }, {
-                    fixed : 'right',
-                    title : '操作',
-                    toolbar : '#barDemo',
-                    width : 230
-                } ] ],
-        })
-    });
-</script>
-<!--static/layui-v2.5.5/layui/layui.js-->
-<script src="../../layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-    layui.use('element', function(){
-        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-
-        //监听导航点击
-        element.on('nav(demo)', function(elem){
-            //console.log(elem)
-            layer.msg(elem.text());
         });
     });
 </script>
