@@ -189,7 +189,7 @@ public class BusinessController extends BaseController {
         businessService.changeAvatar(businessId, avatar);
         // 返回
         ResponseResult<String> rr = new ResponseResult<>();
-        rr.setState(SUCCESS);
+        rr.setCode(SUCCESS);
         rr.setData(avatar); // 就是文件的路径
         System.out.println(avatar);
         return rr;

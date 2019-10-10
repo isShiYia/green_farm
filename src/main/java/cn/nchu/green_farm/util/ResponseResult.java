@@ -25,7 +25,7 @@ public class ResponseResult<E> implements Serializable{
 	// 表示操作成功，后面传递的参数为SUCCESS
 	public ResponseResult(Integer code) {
 		super();
-		setState(code);
+        setCode(code);
 	}
 
 	// 表示操作失败时，返回的状态码和信息
@@ -43,32 +43,39 @@ public class ResponseResult<E> implements Serializable{
 		setData(data);
 	}
 
-	public Integer getState() {
-		return code;
-	}
-	public void setState(Integer code) {
-		this.code = code;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public E getData() {
-		return data;
-	}
-	public void setData(E data) {
-		this.data = data;
-	}
-	public Integer getCount() {
-		return count;
-	}
-	public void setCount(Integer count) {
-		this.count = count;
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	@Override
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public E getData() {
+        return data;
+    }
+
+    public void setData(E data) {
+        this.data = data;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    @Override
 	public String toString() {
 		return "ResponseResult{" +
 				"code=" + code +
