@@ -25,14 +25,7 @@ public class ResponseResult<E> implements Serializable{
 	// 表示操作成功，后面传递的参数为SUCCESS
 	public ResponseResult(Integer state) {
 		super();
-		setState(state);
-	}
-
-	// 表示数据获取成功，后面传递的参数为SUCCESS和数据总数
-	public ResponseResult(Integer state,Integer count) {
-		super();
-		setState(state);
-		setCount(count);
+        setState(state);
 	}
 
 	// 表示操作失败时，返回的状态码和信息
@@ -50,20 +43,15 @@ public class ResponseResult<E> implements Serializable{
 		setData(data);
 	}
 
-	public ResponseResult(Integer count,Integer state, E data) {
-		this(state,count);
-		setData(data);
-	}
+    public Integer getState() {
+        return state;
+    }
 
-	public Integer getState() {
-		return state;
-	}
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
-	public String getMessage() {
+    public String getMessage() {
         return message;
     }
 

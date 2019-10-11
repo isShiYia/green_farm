@@ -1,23 +1,7 @@
 package cn.nchu.green_farm.entity;
 
 /**
- * CREATE TABLE `t_farm_product` (
- *   `id` int(200) NOT NULL AUTO_INCREMENT COMMENT '商品id',
- *   `bid` bigint(20) DEFAULT NULL COMMENT '商家id',
- *   `item_type` varchar(100) DEFAULT NULL COMMENT '商品系列',
- *   `title` varchar(100) DEFAULT NULL COMMENT '商品标题',
- *   `sell_point` varchar(150) DEFAULT NULL COMMENT '商品卖点',
- *   `price` decimal(20,2) DEFAULT NULL COMMENT '商品单价',
- *   `num` int(10) DEFAULT NULL COMMENT '库存数量',
- *   `image` varchar(500) DEFAULT NULL COMMENT '图片路径',
- *   `status` int(1) DEFAULT '1' COMMENT '商品状态  1：上架   2：下架   3：删除',
- *   `priority` int(10) DEFAULT NULL COMMENT '显示优先级',
- *   `created_time` datetime DEFAULT NULL COMMENT '创建时间',
- *   `modified_time` datetime DEFAULT NULL COMMENT '最后修改时间',
- *   `created_user` varchar(50) DEFAULT NULL COMMENT '创建人',
- *   `modified_user` varchar(50) DEFAULT NULL COMMENT '最后修改人',
- *   PRIMARY KEY (`id`) USING BTREE
- * ) ENGINE=InnoDB AUTO_INCREMENT=10000029 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT
+ *  农产品数据实体类
  */
 public class FarmProduct extends BaseEntity {
     /**产品id*/
@@ -28,6 +12,8 @@ public class FarmProduct extends BaseEntity {
     private Integer itemType;
     /**产品名*/
     private String title;
+    /**商品卖点 */
+    private String sellPoint;
     /**产品价格*/
     private Double price;
      /**产品库存*/
@@ -38,21 +24,6 @@ public class FarmProduct extends BaseEntity {
     private Integer status;
     /**产品优先级*/
     private Integer priority;
-
-    @Override
-    public String toString() {
-        return "FarmProduct{" +
-                "id=" + id +
-                ", bid=" + bid +
-                ", itemType=" + itemType +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", num=" + num +
-                ", image='" + image + '\'' +
-                ", status=" + status +
-                ", priority=" + priority +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -124,5 +95,29 @@ public class FarmProduct extends BaseEntity {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    public String getSellPoint() {
+        return sellPoint;
+    }
+
+    public void setSellPoint(String sellPoint) {
+        this.sellPoint = sellPoint;
+    }
+
+    @Override
+    public String toString() {
+        return "FarmProduct{" +
+                "id=" + id +
+                ", bid=" + bid +
+                ", itemType=" + itemType +
+                ", title='" + title + '\'' +
+                ", sellPoint='" + sellPoint + '\'' +
+                ", price=" + price +
+                ", num=" + num +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                ", priority=" + priority +
+                '}';
     }
 }
