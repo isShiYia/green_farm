@@ -24,7 +24,7 @@ public class AdminSerivceTestCase {
     @Test // 待审核商家列表
     public void getListOfBusiness() {
         try {
-            List<Business> list = adminBusService.getListOfBusiness();
+            List<Business> list = adminBusService.getListOfBusiness(1,5);
             System.err.println("BEGIN.");
             for (Business business : list) {
                 System.err.println("business=" + business);

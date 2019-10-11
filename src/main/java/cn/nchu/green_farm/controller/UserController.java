@@ -137,7 +137,7 @@ public class UserController extends BaseController {
         userService.changeAvatar(uid, avatar);
         // 返回
         ResponseResult<String> rr = new ResponseResult<>();
-        rr.setCode(SUCCESS);
+        rr.setState(SUCCESS);
         rr.setData(avatar); // 就是文件的路径
         return rr;
     }

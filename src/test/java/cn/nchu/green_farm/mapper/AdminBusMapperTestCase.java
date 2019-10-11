@@ -22,7 +22,7 @@ public class AdminBusMapperTestCase {
 
     @Test // 增加收货地址数据【测试成功】
     public void findBusinessData() {
-        List<Business> list = adminBusMapper.findBusinessData();
+        List<Business> list = adminBusMapper.findBusinessData(1,5);
         System.err.println("OK.");
         for (Business business : list) {
             System.err.println("business=" +business);
