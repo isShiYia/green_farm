@@ -1,5 +1,7 @@
 package cn.nchu.green_farm.entity;
 
+import java.util.Date;
+
 public class Business extends BaseEntity {
     private static final long serialVersionUID = -6237191313025311552L;
     //

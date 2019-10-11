@@ -22,9 +22,10 @@ public class AdminBusController extends  BaseController {
 
     // http://localhost:8080/admin/bus/list
     @RequestMapping("/list") // 商家列表
-    public ResponseResult<List<Business>> getListByUid() {
-        List<Business> list = adminBusService.getListOfBusiness();
-        return new ResponseResult<>(SUCCESSFUL, list);
+    public ResponseResult<List<Business>> getListByUid(@RequestParam("page") Integer page,@RequestParam("limit") Integer limit) {
+        List<Business> list = adminBusService.getListOfBusiness(page,limit);
+        Integer count = adminBusService.getListOfBusinessCount();
+        return new ResponseResult<>(count,SUCCESS, list);
     }
 
     // http://localhost:8080/admin/bus/pass/1
@@ -32,7 +33,7 @@ public class AdminBusController extends  BaseController {
     public ResponseResult<Void> handlePass(HttpSession session, @PathVariable("id") Integer id) {
         adminBusService.changeStatusPass(id,session.getAttribute("adminName").toString());
 //        adminBusService.changeStatusPass(id,"admin07");
-        return new ResponseResult<>(SUCCESSFUL);
+        return new ResponseResult<>(SUCCESS);
     }
 
     // http://localhost:8080/admin/bus/no_pass/1
@@ -40,7 +41,7 @@ public class AdminBusController extends  BaseController {
     public ResponseResult<Void> handleNoPass(HttpSession session, @PathVariable("id") Integer id) {
         adminBusService.changeStatusNoPass(id, session.getAttribute("adminName").toString());
 //        adminBusService.changeStatusNoPass(id, "admin07");
-        return new ResponseResult<>(SUCCESSFUL);
+        return new ResponseResult<>(SUCCESS);
     }
 
 }

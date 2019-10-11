@@ -22,8 +22,8 @@ public class AdminBusServiceImpl implements IAdminBusService {
     private AdminBusMapper adminBusMapper;
 
     @Override
-    public List<Business> getListOfBusiness() {
-        return findBusinessData();
+    public List<Business> getListOfBusiness(Integer page,Integer limit) {
+        return findBusinessData(page,limit);
     }
 
     @Override
@@ -51,12 +51,17 @@ public class AdminBusServiceImpl implements IAdminBusService {
         updateStatusNoPass(id, modifiedUser, new Date());
     }
 
+    @Override
+    public Integer getListOfBusinessCount() {
+        return adminBusMapper.getListOfBusinessCount();
+    }
+
     /**
      * 查询需要审核的商家的数据
      * @return 匹配的需要审核的商家数据，如果没有则返回 null
      */
-    private List<Business> findBusinessData() {
-        return adminBusMapper.findBusinessData();
+    private List<Business> findBusinessData(Integer page,Integer limit) {
+        return adminBusMapper.findBusinessData((page - 1)*limit,limit);
     }
 
     /**

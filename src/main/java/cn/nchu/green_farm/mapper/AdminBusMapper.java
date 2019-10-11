@@ -17,9 +17,11 @@ public interface AdminBusMapper {
 
     /**
      * 查询需要审核的商家的数据
+     * @param page 页码
+     * @param limit 单页条数
      * @return 匹配的需要审核的商家数据，如果没有则返回 null
      */
-    List<Business> findBusinessData();
+    List<Business> findBusinessData(@Param("page") Integer page,@Param("limit") Integer limit);
 
     /**
      * 根据商家id对数据进行审核通过操作
@@ -49,4 +51,6 @@ public interface AdminBusMapper {
      * @return 匹配的商家数据，如果没有，则返回null
      */
     Business findBusById(Integer id);
+
+    Integer getListOfBusinessCount();
 }
