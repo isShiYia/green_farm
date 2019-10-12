@@ -27,7 +27,7 @@ public class AdminController extends BaseController {
         Admin admin = adminService.login(username, password);
         // 将用户id和用户名发到session中，保存到服务端
         session.setAttribute("adminId", admin.getId());
-        session.setAttribute("admiName", admin.getName());
+        session.setAttribute("adminName", admin.getName());
         return new ResponseResult<>(SUCCESS,admin);
     }
 }

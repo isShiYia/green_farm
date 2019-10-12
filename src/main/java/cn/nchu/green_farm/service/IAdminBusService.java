@@ -3,6 +3,7 @@ package cn.nchu.green_farm.service;
 import cn.nchu.green_farm.entity.Business;
 import cn.nchu.green_farm.service.exception.BusinessNotFoundException;
 import cn.nchu.green_farm.service.exception.UpdateException;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface IAdminBusService {
      * 查询需要审核的商家数据
      * @return 需要审核的商家数据
      */
-    List<Business> getListOfBusiness();
+    List<Business> getListOfBusiness(Integer page,Integer limit);
 
     /**
      * 根据商家id对数据进行审核通过操作
@@ -36,4 +37,5 @@ public interface IAdminBusService {
      */
     void changeStatusNoPass(Integer id,String modifiedUser)  throws UpdateException, BusinessNotFoundException;
 
+    Integer getListOfBusinessCount();
 }

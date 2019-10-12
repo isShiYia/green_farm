@@ -5,20 +5,34 @@
 
 	<!---->
 	<!--查询需要审核的商家的数据-->
-	<!--List<Business> findBusinessData()-->
+	<!--List<Business> findBusinessData(Integer page,,Integer limit)-->
    <select id="findBusinessData" resultType="cn.nchu.green_farm.entity.Business">
 	   select
 			id,business_name AS businessName,
 			gender,phone,
 			email,license,
 			the_status AS theStatus,
-			is_delete AS isDelete
+			is_delete AS isDelete,
+			created_time AS createdTime
 	   from
 	   		t_business
+	   	where
+	   		the_status = 0
 	   order by
-			modified_time ASC
+			id ASC
+		limit
+			#{page},#{limit}
    </select>
-
+	<!--查询申请商家数据总条数-->
+	<!--Integer getListOfBusinessCount()-->
+	<select id="getListOfBusinessCount" resultType="Integer">
+	   select
+			count(id)
+	   from
+	   		t_business
+		where
+			the_status = 0
+   </select>
 	<!--根据商家id对数据进行审核通过操作-->
 	<!-- Integer updateStatusPass(@Param("id") Integer id,
                              @Param("modifiedUser") String modifiedUser,
