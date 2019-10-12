@@ -34,12 +34,23 @@ public class ResponseResult<E> implements Serializable{
 		setMessage(message);
 	}
 
+	public ResponseResult(Integer state,Integer count) {
+		super();
+		setState(state);
+		setCount(count);
+	}
+
 	public ResponseResult(Integer state, Exception e) {
 		this(state,e.getMessage());
 	}
 	
 	public ResponseResult(Integer state, E data) {
 		this(state);
+		setData(data);
+	}
+
+	public ResponseResult(Integer count,Integer state, E data) {
+		this(state,count);
 		setData(data);
 	}
 
