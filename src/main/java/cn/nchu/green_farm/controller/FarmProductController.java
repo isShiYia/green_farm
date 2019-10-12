@@ -26,7 +26,7 @@ import java.util.UUID;
 public class FarmProductController extends BaseController{
     @Autowired
     private IFarmProductService farmProductService;
-    /**允许上传文件的名称*/
+    /**允许上传文件名称*/
     public static final String UPLOAD_DIR_NAME = "portal";
     /**上传文件的大小*/
     public static final long FILE_MAX_SIZE = 5 * 1024 * 1024;

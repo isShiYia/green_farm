@@ -26,7 +26,7 @@ public class FarmProductServiceImpl implements IFarmProductService {
         //产品状态初始化为0：审核中
         farmProduct.setStatus(0);
         Business business = businessService.findById(farmProduct.getBid());
-        // 对日志进行封装
+        // 对日志进行 封装
         farmProduct.setCreatedUser(business.getBusinessName());
         farmProduct.setCreatedTime(new Date());
         farmProduct.setModifiedUser(business.getBusinessName());

@@ -8,7 +8,7 @@ public interface FarmProductMapper {
     /**
      *
      * @param farmProduct :农产品信息
-     * @return：数据库受影响行数
+     * @return：数据库受影响的行数
      */
     Integer addnew(FarmProduct farmProduct);
 }
