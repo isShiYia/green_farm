@@ -20,6 +20,7 @@ package cn.nchu.green_farm.entity;
  * ) ENGINE=InnoDB AUTO_INCREMENT=10000029 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT
  */
 public class FarmProduct extends BaseEntity {
+    private static final long serialVersionUID = 8730391880987963574L;
     /**产品id*/
     private Integer id;
     /**商家id*/
@@ -28,6 +29,8 @@ public class FarmProduct extends BaseEntity {
     private Integer itemType;
     /**产品名*/
     private String title;
+    /**商品卖点*/
+    private String sellPoint;
     /**产品价格*/
     private Double price;
      /**产品库存*/
@@ -39,20 +42,7 @@ public class FarmProduct extends BaseEntity {
     /**产品优先级*/
     private Integer priority;
 
-    @Override
-    public String toString() {
-        return "FarmProduct{" +
-                "id=" + id +
-                ", bid=" + bid +
-                ", itemType=" + itemType +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", num=" + num +
-                ", image='" + image + '\'' +
-                ", status=" + status +
-                ", priority=" + priority +
-                '}';
-    }
+
 
     public Integer getId() {
         return id;
@@ -124,5 +114,29 @@ public class FarmProduct extends BaseEntity {
 
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "FarmProduct{" +
+                "id=" + id +
+                ", bid=" + bid +
+                ", itemType=" + itemType +
+                ", title='" + title + '\'' +
+                ", sellPoint='" + sellPoint + '\'' +
+                ", price=" + price +
+                ", num=" + num +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                ", priority=" + priority +
+                '}';
+    }
+
+    public String getSellPoint() {
+        return sellPoint;
+    }
+
+    public void setSellPoint(String sellPoint) {
+        this.sellPoint = sellPoint;
     }
 }
