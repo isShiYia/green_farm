@@ -23,10 +23,11 @@ public class FarmProductListSerivceTestCase {
 
 
     @Test // 收货地址列表
-    public void getList() {
+    public void getListOfPage() {
         try {
-            Integer uid = 2;
-            List<FarmProduct> list =  farmProductListService.getList();
+            Integer page = 2;
+            Integer limit = 6;
+            List<FarmProduct> list =  farmProductListService.getListOfPage(page, limit);
             System.err.println("BEGIN.");
             for (FarmProduct farmProduct : list) {
                 System.err.println("farmProduct=" +farmProduct);
@@ -39,5 +40,31 @@ public class FarmProductListSerivceTestCase {
 
     }
 
+    @Test //
+    public void getListOfCount() {
+        try {
+            Integer count =  farmProductListService.getListOfCount();
+            System.err.println("count=" +count);
+
+        } catch (ServiceException e) {
+            System.err.println("错误类型:" + e.getClass().getName());
+            System.err.println("错误描述:" + e.getMessage());
+        }
+
+    }
+
+    @Test //
+    public void getById() {
+        try {
+            Integer id = 10000001;
+            FarmProduct farmProduct =  farmProductListService.getById(id);
+            System.err.println("farmProduct=" +farmProduct);
+
+        } catch (ServiceException e) {
+            System.err.println("错误类型:" + e.getClass().getName());
+            System.err.println("错误描述:" + e.getMessage());
+        }
+
+    }
 
 }

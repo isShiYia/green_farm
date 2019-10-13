@@ -26,7 +26,7 @@ import java.util.UUID;
 @RequestMapping("/farmProduct")
 public class FarmProductController extends BaseController{
 
-    
+
     @Resource
     private IFarmProductService farmProductService;
     /**允许上传文件名称*/

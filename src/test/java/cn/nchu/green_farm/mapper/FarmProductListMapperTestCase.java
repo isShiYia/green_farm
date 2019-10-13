@@ -21,8 +21,10 @@ public class FarmProductListMapperTestCase {
 
 
     @Test //
-    public void findListById() {
-        List<FarmProduct> list  = farmProductListMapper.findListById();
+    public void findListOfPage() {
+        Integer page = 1;
+        Integer limit = 6;
+        List<FarmProduct> list  = farmProductListMapper.findListOfPage(page, limit);
         System.err.println("BEGIN.");
         for (FarmProduct farmProduct : list) {
             System.err.println("farmProduct=" + farmProduct);
@@ -31,5 +33,17 @@ public class FarmProductListMapperTestCase {
 
     }
 
+    @Test
+    public void findListCount() {
+        Integer count = farmProductListMapper.findListCount();
+        System.err.println("count=" +count);
+    }
 
+    @Test
+    public void findById() {
+        Integer id = 10000001;
+        FarmProduct farmProduct = farmProductListMapper.findById(id);
+        System.err.println("farmProduct" + farmProduct);
+
+    }
 }

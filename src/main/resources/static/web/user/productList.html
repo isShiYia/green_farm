@@ -406,13 +406,13 @@
 				"dataType":"json",
 				"success":function(json) {
 					if (json.state == 200) {
-						console.log("count" + json.count);
+						console.log("count=" + json.count);
 						$("#line1").empty();
 						var list = json.data;
 						for (var i = 0; i < list.length ; i++) {
 							console.log(list[i].image+"-"+list[i].title);
-							var html='<div  id="product1" class="col-md-3">'
-									+'<div  id="goods1"  class="#{goods-panel}">'
+							var html='<div class="col-md-3">'
+									+'<div class="#{goods-panel}">'
 									+'<div class="move-img img-search" />'
 									+'<img src="../..#{image}collect.png" width="100%"/>'
 									+'</div>'
@@ -430,7 +430,6 @@
 							html = html.replace(/#{price}/g,list[i].price);
 							html = html.replace(/#{title}/g,list[i].title);
 							html = html.replace(/#{goods-panel}/g,'style="width: 100%;border: 1px solid#eeeeee;box-shadow: 0px 0px 0px #888888;padding: 3px;padding-bottom: 10px;margin-bottom: 30px;"');
-
 
 							$("#line1").append(html);
 							// $(".goods-panel").trigger('create');
