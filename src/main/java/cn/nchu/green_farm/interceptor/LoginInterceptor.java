@@ -15,8 +15,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("bid") == null) {
+		if (session.getAttribute("uid") == null) {
 			response.sendRedirect("../user/login.html");
+			// 		拦截
+			return false;
+		} else if (session.getAttribute("bid") == null) {
+			response.sendRedirect("../business/businessLogin.html");
 			// 		拦截
 			return false;
 		} else {
