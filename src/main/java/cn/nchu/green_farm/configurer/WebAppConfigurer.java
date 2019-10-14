@@ -37,7 +37,6 @@ public class WebAppConfigurer implements WebMvcConfigurer {
 		excludePathPatterns.add("/web/user/index.html");
 		excludePathPatterns.add("/web/admin/adminUserData.html");
 		excludePathPatterns.add("/web/admin/adminSignUp.html");
-		excludePathPatterns.add("/web/user/product.html");
 		excludePathPatterns.add("/web/admin/adminLogin.html");
 		excludePathPatterns.add("/admin/login.do");
 		// 注册

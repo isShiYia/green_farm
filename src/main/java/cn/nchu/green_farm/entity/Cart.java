@@ -1,7 +1,9 @@
 package cn.nchu.green_farm.entity;
 
 /**
- * 购物车实体类
+ * 购物车实体类:
+ *      这里在将商品的信息提交到购物车中只需要商品id，价格和数量
+ *      至于图片是在农产品表中存在的，可以不用
  * @author Choococo
  */
 public class Cart extends BaseEntity {
