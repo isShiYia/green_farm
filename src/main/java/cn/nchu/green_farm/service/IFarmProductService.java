@@ -7,6 +7,7 @@ import cn.nchu.green_farm.service.exception.InsertException;
  *
  */
 public interface IFarmProductService {
-FarmProduct create(FarmProduct farmProduct) throws InsertException;
+
+    FarmProduct create(FarmProduct farmProduct) throws InsertException;
 
 }

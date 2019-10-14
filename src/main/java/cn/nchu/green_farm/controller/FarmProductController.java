@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -24,7 +25,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/farmProduct")
 public class FarmProductController extends BaseController{
-    @Autowired
+
+
+    @Resource
     private IFarmProductService farmProductService;
     /**允许上传文件名称*/
     public static final String UPLOAD_DIR_NAME = "portal";

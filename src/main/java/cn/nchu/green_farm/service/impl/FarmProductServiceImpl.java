@@ -2,16 +2,25 @@ package cn.nchu.green_farm.service.impl;
 
 import cn.nchu.green_farm.entity.Business;
 import cn.nchu.green_farm.entity.FarmProduct;
+import cn.nchu.green_farm.mapper.FarmProductListMapper;
 import cn.nchu.green_farm.mapper.FarmProductMapper;
+import cn.nchu.green_farm.service.IFarmProductListService;
 import cn.nchu.green_farm.service.IFarmProductService;
 import cn.nchu.green_farm.service.exception.InsertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
+
+/**
+ * @author Choococo
+ */
 @Service
 public class FarmProductServiceImpl implements IFarmProductService {
+
     @Autowired
     FarmProductMapper farmProductMapper;
     @Autowired
@@ -37,4 +46,6 @@ public class FarmProductServiceImpl implements IFarmProductService {
     private void addnew(FarmProduct farmProduct){
         farmProductMapper.addnew(farmProduct);
     }
+
+
 }
