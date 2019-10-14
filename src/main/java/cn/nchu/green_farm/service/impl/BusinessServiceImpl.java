@@ -149,6 +149,13 @@ public class BusinessServiceImpl implements IBusinessService {
 
     }
 
+    public Business findById(Integer businessId){
+        Business business = getById(businessId);
+        return business;
+
+    }
+
+
     private Business getById(Integer businessId){
         return businessMapper.getById(businessId);
     }
