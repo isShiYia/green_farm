@@ -1,7 +1,7 @@
 package cn.nchu.green_farm.mapper;
 
 import cn.nchu.green_farm.entity.Address;
-import cn.nchu.green_farm.entity.User;
+import cn.nchu.green_farm.entity.BusinessAddress;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,35 +9,35 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 收货地址持久层接口
- * @author Choococo
+ * 商家地址持久层接口
+ * @author Jianhzhong
  */
 @Mapper
-public interface AddressMapper {
+public interface BusinessAddressMapper {
 
     /*
         这里我们设计的是:在收货地址
      */
     /**
      * 新增收货地址数据
-     * @param address 收货地址数据
+     * @param businessAddress 收货地址数据
      * @return 受影响的行数
      */
-    Integer addnew(Address address);
+    Integer addnew(BusinessAddress businessAddress);
 
     /**
      * 根据用户id查询收货地址数据
-     * @param uid 用户id
+     * @param bid 商家id
      * @return 收货地址数据
      */
-    Integer getCountByUid(Integer uid);
+    Integer getCountByBid(Integer bid);
 
     /**
      * 根据用户id获取收获地址列表数据
-     * @param uid 用户id
+     * @param bid 商家id
      * @return 匹配的收货地址列表数据，如果没有则返回null
      */
-    List<Address> findByUid(Integer uid);
+    List<BusinessAddress> findByBid(Integer bid);
 
     /*
         下面两个方法是用来处理设为默认的操作的：
@@ -49,10 +49,10 @@ public interface AddressMapper {
 
     /**
      * 根据用户id将用户的所有的收货地址设置为非默认 0
-     * @param uid 用户id
+     * @param bid 商家id
      * @return 受影响的行数
      */
-    Integer updateNonDefault(Integer uid);
+    Integer updateNonDefault(Integer bid);
 
     /**
      * 将指定的收货地址设置为默认 1
@@ -68,7 +68,7 @@ public interface AddressMapper {
      * @param id 收货地址id
      * @return 匹配的收货地址的数据，如果没有则返回null
      */
-    Address findById(Integer id);
+    BusinessAddress findById(Integer id);
 
     /**
      * 根据收货地址id删除收货地址
@@ -79,10 +79,10 @@ public interface AddressMapper {
 
     /**
      * 根据用户id查询用户最后修改的收货地址的数据
-     * @param uid 用户id
+     * @param bid 商家id
      * @return 匹配的收货地址数，如果没有则返回null
      */
-    Address findLastModified(Integer uid);
+    Address findLastModified(Integer bid);
 
     /*
         修改收货地址信息：
@@ -91,10 +91,9 @@ public interface AddressMapper {
 
     /**
      * 根据收货地址id修改收货地址信息
-     * @param address 收货地址信息
+     * @param businessAddress 收货地址信息
      * @return 受影响的行数
      */
-    Integer updateInfo(Address address);
-
+    Integer updateInfo(BusinessAddress businessAddress);
 
 }
