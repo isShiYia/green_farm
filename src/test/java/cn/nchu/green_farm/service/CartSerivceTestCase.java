@@ -86,4 +86,16 @@ public class CartSerivceTestCase {
             System.err.println("错误描述:" + e.getMessage());
         }
     }
+    
+    @Test
+    public void getByIds() {
+        Integer[] ids = {7,8};
+        List<CartVO> list = cartService.getByIds(ids);
+        System.err.println("BEGIN.");
+        for (CartVO cartVO : list) {
+            System.err.println("cartVO=" +cartVO);
+        }
+        System.err.println("END.");
+        
+    }
 }

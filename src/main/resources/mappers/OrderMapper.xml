@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.nchu.green_farm.mapper.OrderMapper">
+
+	<!-- private Integer id;
+         private Integer uid;
+         private String recvName;
+         private String recvPhone;
+         private String recvDistrict;
+         private String recvAddress;
+         private Double pay;
+         private Integer status;
+         private List<OrderItem> items; -->
+	<!-- 查询订单详情得到OrderVO的映射配置 -->
+	<resultMap type="cn.nchu.green_farm.vo.OrderVO" id="Order_VO_Map">
+		<id column="id" property="id"/>
+		<id column="uid" property="uid"/>
+		<id column="recv_name" property="recvName"/>
+		<id column="recv_phone" property="recvPhone"/>
+		<id column="recv_district" property="recvDistrict"/>
+		<id column="recv_address" property="recvAddress"/>
+		<id column="pay" property="pay"/>
+		<id column="status" property="status"/>
+		<collection property="items" ofType="cn.nchu.green_farm.entity.OrderItem">
+			<!-- private Integer id;
+               private Integer oid;
+               private Long goodsId;
+               private String goodsImage;
+               private String goodsTitle;
+               private Integer goodsCount;
+               private Double goodsPrice;
+               下面的查询语句只查询了5个字段-->
+			<result column="goods_id" property="goodsId"/>
+			<result column="goods_image" property="goodsImage"/>
+			<result column="goods_title" property="goodsTitle"/>
+			<result column="goods_count" property="goodsCount"/>
+			<result column="goods_price" property="goodsPrice"/>
+		</collection>
+	</resultMap>
+
+	<!-- 插入订单数据 -->
+	<!-- Integer insertOrder(Order order) -->
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="id">
+ 		INSERT INTO t_order (
+ 			uid,
+ 			recv_name,recv_phone,
+ 			recv_district,recv_address,
+ 			pay,order_time,status,
+ 			created_user,created_time,
+ 			modified_user,modified_time
+ 		) VALUES (
+ 			#{uid},
+ 			#{recvName},#{recvPhone},
+ 			#{recvDistrict},#{recvAddress},
+ 			#{pay},#{orderTime},#{status},
+ 			#{createdUser},#{createdTime},
+ 			#{modifiedUser},#{modifiedTime}
+ 		)
+
+
+ 	</insert>
+
+	<!-- 插入订单商品数据 -->
+	<!-- Integer insertOrderItem(OrderItem orderItem) -->
+	<insert id="insertOrderItem" useGeneratedKeys="true" keyProperty="id">
+ 		INSERT INTO t_order_item (
+ 			oid,
+ 			goods_id,
+ 			goods_image,goods_title,
+ 			goods_price,goods_count,
+ 			created_user,created_time,
+ 			modified_user,modified_time
+ 		) VALUES (
+ 			#{oid},
+ 			#{goodsId},
+ 			#{goodsImage},#{goodsTitle},
+ 			#{goodsPrice},#{goodsCount},
+ 			#{createdUser},#{createdTime},
+ 			#{modifiedUser},#{modifiedTime}
+ 		)
+ 	</insert>
+
+	<!-- 根据id查询订单详情 -->
+	<!-- OrderVO findById(Integer id) -->
+	<select id="findById" resultMap="Order_VO_Map">
+ 		SELECT
+			t_order.id,
+			uid,
+			recv_name, recv_phone,
+			recv_district, recv_address,
+			pay, status,
+			goods_id,
+			goods_image, goods_title,
+			goods_price, goods_count
+		FROM
+			t_order
+		INNER JOIN
+			t_order_item
+		ON
+			t_order.id=t_order_item.oid
+		WHERE
+			t_order.id=#{id}
+ 	</select>
+
+ </mapper>
+

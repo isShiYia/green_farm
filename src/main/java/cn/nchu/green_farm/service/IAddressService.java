@@ -60,4 +60,6 @@ public interface IAddressService {
      * @throws UpdateException 数据更新异常
      */
     void changeInfo(Address address, String username) throws AddressNotFoundException,UpdateException,AccessDefinedException;
+
+    Address getById(Integer addressId);
 }

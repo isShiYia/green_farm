@@ -75,10 +75,11 @@ public class CartController extends BaseController {
         return new ResponseResult<>(SUCCESS);
     }
 
+    // http://localhost:8080/cart/get_by_ids?cart_id=7,8
     @GetMapping("/get_by_ids")
     public ResponseResult<List<CartVO>> getByIds(@RequestParam("cart_id") Integer[] ids) {
         List<CartVO> list = cartService.getByIds(ids);
-        return new ResponseResult<List<CartVO>>(SUCCESS, list);
+        return new ResponseResult<>(SUCCESS, list);
     }
 
 
