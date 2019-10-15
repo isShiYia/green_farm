@@ -80,6 +80,27 @@ public class CartServiceImpl implements ICartService {
         updateCount(id, count, username, new Date());
     }
 
+    @Override
+    public void reduceCount(String username, Integer id, Integer uid) throws CartNotFoundException, AccessDefinedException, UpdateException {
+        // 根据购物车id获取购物车数据
+        Cart data  = findById(id);
+        if (data == null) {
+            throw new CartNotFoundException("修改商品数量失败!您尝试修改的商品数据不存在!");
+        }
+        if (!data.getUid().equals(uid)) {
+            throw new AccessDefinedException("修改商品数量失败!访问数据权限验证不通过!");
+        }
+        Integer count = data.getCount();
+        count --;
+        updateCount(id, count, username, new Date());
+
+    }
+
+    @Override
+    public List<CartVO> getByIds(Integer[] ids) {
+        return findByIds(ids);
+    }
+
     /**
      * 新增购物车数据
      * @param cart 购物车数据
@@ -134,4 +155,14 @@ public class CartServiceImpl implements ICartService {
     private Cart findById(Integer id) {
         return cartMapper.findById(id);
     }
+
+    /**
+     * 根据一系列id获取购物车中的数据
+     * @param ids 购物车中所勾选的id的数组
+     * @return 购物车中所勾选的id好的商品数据的信息的集合
+     */
+    private List<CartVO> findByIds(Integer[] ids) {
+        return cartMapper.findByIds(ids);
+    }
+
 }

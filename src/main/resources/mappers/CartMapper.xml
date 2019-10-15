@@ -78,6 +78,30 @@
 			id=#{id}
 	</select>
 
+	<!-- 根据一系列id获取购物车中的数据 -->
+	<!-- List<CartVO> findByIds(Integer[] ids) -->
+	<select id="findByIds" resultType="cn.nchu.green_farm.vo.CartVO">
+		select
+			t_cart.id,
+			uid,pid,
+			t_cart.price AS OldPrice,count,
+			t_farm_product.price AS newPrice,
+			title,image
+		from
+			t_cart
+		inner join
+			t_farm_product
+		on
+			t_cart.id=t_farm_product
+		where
+			t_cart.id IN
+			<foreach collection="array" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		order by
+			t_cart.id DESC
+	</select>
+
 
  </mapper>
 
