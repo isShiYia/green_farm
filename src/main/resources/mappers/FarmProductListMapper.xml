@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.nchu.green_farm.mapper.FarmProductListMapper">
+
+   <!--根据农产品id查询农产品列表数据-->
+   <!--List<FarmProduct> findListOfPage(Integer page, Integer limit)-->
+	<select id="findListOfPage" resultType="cn.nchu.green_farm.entity.FarmProduct">
+        SELECT
+            id,bid,
+            item_type AS itemType,
+            title,sell_point AS sellPoint,
+            price,num,image,status,
+            priority,
+            created_user AS createdUser,
+            created_time AS createdTime
+        FROM
+            t_farm_product
+        ORDER BY
+            priority desc
+        limit
+            #{page},#{limit}
+	</select>
+
+    <!--根据农产品id查询农产品详细信息-->
+    <!--FarmProduct findById(Integer id)-->
+    <select id="findById" resultType="cn.nchu.green_farm.entity.FarmProduct">
+        select
+            id,bid,
+            item_type AS itemType,
+            title,
+            sell_point AS sellPoint,
+            price,num,image,status,
+            created_time AS createdTime
+        from
+            t_farm_product
+        where
+            id=#{id}
+
+    </select>
+
+    <!--查询农产品列表总数-->
+    <!--Integer findListCount()-->
+    <select id="findListCount" resultType="java.lang.Integer">
+        select
+            count(id)
+        from
+            t_farm_product
+        where
+            status=1
+    </select>
+
+ </mapper>
+

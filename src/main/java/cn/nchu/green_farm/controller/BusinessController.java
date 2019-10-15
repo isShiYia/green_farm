@@ -115,7 +115,7 @@ public class BusinessController extends BaseController {
             @RequestParam("businessName") String businessName,
             @RequestParam("password") String password, HttpSession session){
         Business data = businessService.login(businessName, password);
-        session.setAttribute("businessId",data.getId());
+        session.setAttribute("bid",data.getId());
         session.setAttribute("businessName",data.getBusinessName());
         System.out.println(data);
         return new ResponseResult<>(SUCCESS,data);
