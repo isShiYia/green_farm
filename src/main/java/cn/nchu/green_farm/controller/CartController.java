@@ -49,7 +49,7 @@ public class CartController extends BaseController {
 
     }
 
-    @GetMapping("/add_count")
+    @GetMapping("/add_count") // 点击按钮
     public ResponseResult<Void> addCount(@RequestParam("id") Integer id, HttpSession session) {
         // 从session中获取用户名
         String username = session.getAttribute("username").toString();
