@@ -13,6 +13,7 @@ import java.util.UUID;
 
 /**
  * 商家持久层实现
+ * ...
  */
 @Service
 public class BusinessServiceImpl implements IBusinessService {
@@ -22,7 +23,7 @@ public class BusinessServiceImpl implements IBusinessService {
     /**
      *
      * @param business:商家数据
-     * @return:商家数据
+     * @return 商家数据
      * @throws DuplicateKeyException：违反unique约束异常
      * @throws InsertException：数据插入异常
      */
@@ -60,14 +61,13 @@ public class BusinessServiceImpl implements IBusinessService {
         else{
             throw new DuplicateKeyException("注册商家失败!您注册的商家名"+business.getBusinessName()+"已存在!");
         }
-
     }
 
     /**
      *
      * @param businessName:商家名
      * @param password：密码
-     * @return：商家信息
+     * @return 商家信息
      * @throws UserNotFoundException：用户名未找到异常
      * @throws PasswordNotMatchException：密码错误异常
      * @throws DuplicateKeyException：违反unique约束异常
@@ -83,11 +83,9 @@ public class BusinessServiceImpl implements IBusinessService {
         }
         else if(data.getTheStatus()==0){
             throw new UserNotFoundException("登录失败！该商家"+businessName+"注册审核中！");
-
         }
         else if(data.getTheStatus()==2){
             throw new UserNotFoundException("登录失败！该商家"+businessName+"注册审核未通过！");
-
         }
         String md5Password=getMd5Password(password,data.getSalt());
          if(md5Password.equals(data.getPassword())){
@@ -124,11 +122,10 @@ public class BusinessServiceImpl implements IBusinessService {
             String newMd5Password=getMd5Password(newPassword,data.getSalt());
             updatePassword(businessId,newMd5Password,modifiedUser,modifiedTime);
             System.out.println("成功");
-        }
-        else {
+        } else {
             throw new PasswordNotMatchException("修改失败！原密码错误，请重试！");
         }
-        }
+    }
 
         //上传头像
     @Override
@@ -152,6 +149,12 @@ public class BusinessServiceImpl implements IBusinessService {
 
     }
 
+    public Business findById(Integer businessId){
+        Business business = getById(businessId);
+        return business;
+
+    }
+
 
     private Business getById(Integer businessId){
         return businessMapper.getById(businessId);
@@ -160,6 +163,7 @@ public class BusinessServiceImpl implements IBusinessService {
     private Business getByBusinessName(String businessName){
         return businessMapper.getByBusinessName(businessName);
     }
+
     /**
      * 对原始密码和盐值执行MD5加密
      * @param srcPassword 原始密码
@@ -174,7 +178,6 @@ public class BusinessServiceImpl implements IBusinessService {
         return src;
     }
 
-
     /**
      * 插入商家数据
      * @param business：商家数据
@@ -185,6 +188,7 @@ public class BusinessServiceImpl implements IBusinessService {
             throw new InsertException("新增商家数据时出现未知错误!");
         }
     }
+
     private void updatePassword(Integer businessId,String newPassword, String modifiedUser,Date modifiedTime){
         Integer rows = businessMapper.updatePassword(businessId, newPassword, modifiedUser, modifiedTime);
         if (rows != 1) {
@@ -198,7 +202,6 @@ public class BusinessServiceImpl implements IBusinessService {
      * @param avatar 用户头像
      * @param modifiedUser 修改执行人
      * @param modifiedTime 修改执行时间
-     * @return 受影响的行数
      */
     private void updateAvatar(Integer busisnessId,String avatar, String modifiedUser,Date modifiedTime) {
         Integer rows = businessMapper.updateAvatar(busisnessId, avatar, modifiedUser, modifiedTime);

@@ -1,7 +1,10 @@
 package cn.nchu.green_farm.entity;
 
+import java.util.Date;
+
 public class Business extends BaseEntity {
     private static final long serialVersionUID = -6237191313025311552L;
+    //
     /**商家id*/
     private Integer id;
     /**商家名*/
@@ -22,7 +25,7 @@ public class Business extends BaseEntity {
     private String license;
     /** '是否删除，0-未删除，1-已删除',*/
     private Integer isDelete;
-    /*0:审核中，1：审核通过：2：未通过*/
+    /** 0:审核中，1：审核通过：2：未通过*/
     private Integer theStatus;
 
     public static long getSerialVersionUID() {

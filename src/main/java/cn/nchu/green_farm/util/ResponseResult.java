@@ -9,10 +9,15 @@ public class ResponseResult<E> implements Serializable{
 
 	private static final long serialVersionUID = -1626793180717240861L;
 
+	/** 状态码 */
 	private Integer state;
+	/** 异常信息 */
 	private String message;
+	/** 数据 */
 	private E data;
-	
+	/** 数量 */
+	private Integer count;
+
 	public ResponseResult() {
 		super();
 	}
@@ -20,13 +25,19 @@ public class ResponseResult<E> implements Serializable{
 	// 表示操作成功，后面传递的参数为SUCCESS
 	public ResponseResult(Integer state) {
 		super();
-		setState(state);
+        setState(state);
 	}
 
 	// 表示操作失败时，返回的状态码和信息
 	public ResponseResult(Integer state, String message) {
 		this(state);// this是调自己的构造方法，super是调父类的构造方法
 		setMessage(message);
+	}
+
+	public ResponseResult(Integer state,Integer count) {
+		super();
+		setState(state);
+		setCount(count);
 	}
 
 	public ResponseResult(Integer state, Exception e) {
@@ -38,27 +49,50 @@ public class ResponseResult<E> implements Serializable{
 		setData(data);
 	}
 
-	public Integer getState() {
-		return state;
+	public ResponseResult(Integer count,Integer state, E data) {
+		this(state,count);
+		setData(data);
 	}
-	public void setState(Integer state) {
-		this.state = state;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public E getData() {
-		return data;
-	}
-	public void setData(E data) {
-		this.data = data;
-	}
-	@Override
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public E getData() {
+        return data;
+    }
+
+    public void setData(E data) {
+        this.data = data;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    @Override
 	public String toString() {
-		return "ResponseResult [state=" + state + ", message=" + message + ", data=" + data + "]";
+		return "ResponseResult{" +
+				"state=" + state +
+				", message='" + message + '\'' +
+				", data=" + data +
+				", count=" + count +
+				'}';
 	}
-	
 }

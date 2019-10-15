@@ -16,7 +16,8 @@ public abstract class BaseController {
 	 * 正确响应的代号
 	 */
 	public static final Integer SUCCESS = 200;
-	
+	public static final Integer SUCCESSFUL = 0;
+
 	@ExceptionHandler({ServiceException.class, RequestException.class})// 异常的范围
 	@ResponseBody
 	public ResponseResult<Void> handleException(Exception e) {
@@ -41,6 +42,10 @@ public abstract class BaseController {
 		} else if (e instanceof AccessDefinedException) {
 			// 404-密码错误
 			state = 404;
+			// return new ResponseResult<>(402, e);
+		} else if (e instanceof BusinessNotFoundException) {
+			// 405-商家数据不存在
+			state = 405;
 			// return new ResponseResult<>(402, e);
 		} else if (e instanceof InsertException) {
 			// 500-插入数据异常
@@ -81,9 +86,13 @@ public abstract class BaseController {
 	protected Integer getUidFromSession(HttpSession session) {
 		return Integer.valueOf(session.getAttribute("uid").toString());
 	}
+
+	/**
+	 *
+	 * @param session
+	 * @return 当前商家登陆的id
+	 */
 	protected Integer getBidFromSession(HttpSession session) {
 		return Integer.valueOf(session.getAttribute("businessId").toString());
 	}
-	
-	
 }

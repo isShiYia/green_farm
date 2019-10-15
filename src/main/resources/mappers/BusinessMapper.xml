@@ -30,7 +30,7 @@
     <select id="getByBusinessName" resultType="cn.nchu.green_farm.entity.Business">
      SELECT
 		id, business_name businessName, password,
-		salt, avatar,
+		salt, avatar,license,
 		is_delete isDelete
 		,the_status theStatus
 	 FROM

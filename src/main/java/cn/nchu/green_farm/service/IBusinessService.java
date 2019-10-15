@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface IBusinessService {
     /**
-     *
      * @param business:商家数据
      * @return：商家数据
      * @throws DuplicateKeyException：违反unique约束异常
@@ -36,7 +35,7 @@ public interface IBusinessService {
      * @throws PasswordNotMatchException：原密码错误异常
      * @throws UpdateException：更新数据异常
      */
-    void updataPassword(Integer businessId,String newPassword,String oldPassword)
+    void updataPassword(Integer businessId, String newPassword, String oldPassword)
             throws UserNotFoundException,PasswordNotMatchException, UpdateException;
 
     /**

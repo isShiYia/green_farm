@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.nchu.green_farm.mapper.CartMapper">
+
+   <!--新增收货地址数据-->
+   <!-- Integer addnew(Address address)-->
+   <insert id="addnew" useGeneratedKeys="true" keyProperty="id" parameterType="cn.nchu.green_farm.entity.Cart">
+        insert into t_cart (
+            uid,pid,
+            price,count,
+            created_user,created_time,
+            modified_user,modified_time
+        ) values (
+            #{uid},#{pid},
+            #{price},#{count},
+            #{createdUser},#{createdTime},
+            #{modifiedUser},#{modifiedTime}
+        )
+   </insert>
+
+	<!-- 根据用户id和商品id查询购物车数据 -->
+	<!-- Cart findByUidAndPid(
+        @Param("uid") Integer uid,
+        @Param("pid") Long pid) -->
+	<select id="findByUidAndPid" resultType="cn.nchu.green_farm.entity.Cart">
+ 		SELECT
+ 			id,count
+ 		FROM
+ 			t_cart
+ 		WHERE
+ 			uid=#{uid} AND pid=#{pid}
+ 	</select>
+
+	<!-- 更新购物车中商品的数量 -->
+	<!-- Integer updateCount(
+        @Param("id") Integer id,
+        @Param("count") Integer count) -->
+	<update id="updateCount">
+ 		UPDATE t_cart
+ 		SET
+ 			count=#{count},
+ 			modified_user=#{modifiedUser},
+ 			modified_time=#{modifiedTime}
+ 		WHERE
+ 			id=#{id}
+ 	</update>
+
+	<!-- 根据用户id查询该用户购物车的数据列表 -->
+	<!-- List<CartVO> findByUid(Integer uid) -->
+	<select id="findByUid" resultType="cn.nchu.green_farm.vo.CartVO">
+ 		SELECT
+			t_cart.id,
+			uid, pid,
+			t_cart.price AS oldPrice, count,/*将购物车中的价格作为老的价格，因为价格可能会发生变动*/
+			t_farm_product.price AS newPrice,/*将农产品中的价格作为新的价格*/
+			title, image
+ 		FROM
+ 			t_cart
+ 		INNER JOIN
+ 			t_farm_product
+ 		ON
+ 			t_cart.pid=t_farm_product.id
+ 		WHERE
+ 			uid=#{uid}
+ 		ORDER BY
+ 			id DESC
+ 	</select>
+
+	<!-- 根据id获取用户购物车数据 -->
+	<!-- Cart findById(Integer id) -->
+	<select id="findById" resultType="cn.nchu.green_farm.entity.Cart">
+		SELECT
+			uid,count <!--在后面购物车界面增加数据的时候，增加uid数据,保证数据的可靠 -->
+		FROM
+			t_cart
+		WHERE
+			id=#{id}
+	</select>
+
+
+ </mapper>
+

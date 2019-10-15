@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>用户信息-后台管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="../../layui-v2.5.5/layui/css/layui.css"  media="all">
+</head>
+<!--layui.table图片显示不全，需重新定义CSS  -->
+<!--<style type="text/css">-->
+<!--    .layui-table-body{-->
+<!--        height:auto!important;-->
+<!--        white-space:normal;-->
+<!--    }-->
+<!--</style>-->
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">绿色农场</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+<!--        <ul class="layui-nav layui-layout-left">-->
+<!--            <li class="layui-nav-item"><a href="">控制台</a></li>-->
+<!--            <li class="layui-nav-item"><a href="">商品管理</a></li>-->
+<!--            <li class="layui-nav-item"><a href="">用户</a></li>-->
+<!--        </ul>-->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+                    鹏弟弟
+                </a>
+<!--                <dl class="layui-nav-child">-->
+<!--                    <dd><a href="">基本资料</a></dd>-->
+<!--                    <dd><a href="">安全设置</a></dd>-->
+<!--                </dl>-->
+            </li>
+            <li class="layui-nav-item"><a href="">注销</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="adminUserData.html">用户列表</a></dd>
+                        <dd><a href="javascript:;">修改密码</a></dd>
+                        <dd><a href="javascript:;">找回密码</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">商家管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">商家列表</a></dd>
+                        <dd class="layui-this"><a href="#">入驻申请</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">农场管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">农场列表</a></dd>
+                        <dd><a href="javascript:;">上架申请</a></dd>
+                        <dd><a href="javascript:;">数据面板</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">农产品管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">农产品列表</a></dd>
+                        <dd><a href="adminCheckGoos.html">上架申请</a></dd>
+                        <dd><a href="javascript:;">数据面板</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © Green-Farm - 绿色农场
+    </div>
+</div>
+<script src="../../layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d214947968792b839fd669a4decaaffc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="pass">通过</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="fail">不通过</a>
+</script>
+<script type="text/html" id="imgtmp">
+    <img src="{{d.license}}">
+</script>
+<script src="../../layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        var $ = layui.jquery
+        table.render({
+            elem: '#test'
+            ,url:'../../admin/bus/list'
+            ,parseData: function(res){ //res 即为原始返回的数据
+                if (res.state == 200){
+                    var code = 0;
+                }
+                return {
+                    "code": code, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": res.data //解析数据列表
+                };
+            }
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                ,layEvent: 'LAYTABLE_TIPS'
+                ,icon: 'layui-icon-tips'
+            }]
+            ,title: '用户数据表'
+            ,cols: [[
+                {fixed:'left',type: 'checkbox'}
+                ,{fixed:'left',field:'id', title:'ID', width:80, sort: true}
+                ,{field:'businessName', title:'管理员账号', width:150}
+                ,{field:'email', title:'邮箱', width:300, edit: 'text'}
+                ,{field:'createdTime', title:'申请时间', width:300}
+                ,{field:'license',title:'资质证明',width:150,templet:"#imgtmp",align:'center'}
+                ,{fixed:'right',title:'操作', toolbar: '#barDemo', width:200,align:'center'}
+            ]]
+            // ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            //     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+            //     //,curr: 5 //设定初始在第 5 页
+            //     ,groups: 1 //只显示 1 个连续页码
+            //     ,first: false //不显示首页
+            //     ,last: false //不显示尾页
+            // }
+            ,page:true
+        });
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'pass'){
+                var url = "../../admin/bus/pass/" + data.id;
+                $.ajax({
+                    "url": url,
+                    "type": "GET",
+                    // dataType: "json",
+                    "success": function(res){
+                        if(res.state === 200){
+                            //关闭弹框
+                            layer.msg("审核通过成功！", {icon: 6});
+                            //删除这一行
+                            obj.del();
+                            // parent.location.reload();
+                        }else{
+                            layer.msg("审核执行失败：" + res.message, {icon: 5});
+                        }
+                    },
+                    "error":function(){
+                        layer.msg("发生请求错误：" + url,{icon: 5});
+                    }
+                });
+            } else if(obj.event === 'fail'){
+                var url = "../../admin/bus/no_pass/" + data.id;
+                $.ajax({
+                    "url" : url,
+                    "type" : "GET",
+                    // dataType : "json",
+                    "success" : function (res) {
+                        if (res.state == 200) {
+                            layer.msg("审核不通过成功！", {icon: 6});
+                            //删除这一行
+                            obj.del();
+                        } else {
+                            layer.msg("审核执行失败：" + res.message, {icon: 5});
+                        }
+                    },
+                    "error":function(){
+                        layer.msg("发生请求错误：" + url,{icon: 5});
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

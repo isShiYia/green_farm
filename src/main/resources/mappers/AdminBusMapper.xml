@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.nchu.green_farm.mapper.AdminBusMapper">
+
+	<!---->
+	<!--查询需要审核的商家的数据-->
+	<!--List<Business> findBusinessData(Integer page,,Integer limit)-->
+   <select id="findBusinessData" resultType="cn.nchu.green_farm.entity.Business">
+	   select
+			id,business_name AS businessName,
+			gender,phone,
+			email,license,
+			the_status AS theStatus,
+			is_delete AS isDelete,
+			created_time AS createdTime
+	   from
+	   		t_business
+	   	where
+	   		the_status = 0
+	   order by
+			id ASC
+		limit
+			#{page},#{limit}
+   </select>
+	<!--查询申请商家数据总条数-->
+	<!--Integer getListOfBusinessCount()-->
+	<select id="getListOfBusinessCount" resultType="Integer">
+	   select
+			count(id)
+	   from
+	   		t_business
+		where
+			the_status = 0
+   </select>
+	<!--根据商家id对数据进行审核通过操作-->
+	<!-- Integer updateStatusPass(@Param("id") Integer id,
+                             @Param("modifiedUser") String modifiedUser,
+                             @Param("modifiedTime")  Date modifiedTime)-->
+	<update id="updateStatusPass">
+		update
+			t_business
+		set
+			the_status=1,/*表示通过*/
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		where
+			id=#{id}
+	</update>
+
+	<!--根据商家id对数据进行审核为通过操作-->
+	<!--Integer updateStatusNoPass(@Param("id") Integer id,
+                               @Param("modifiedUser")  String modifiedUser,
+                               @Param("modifiedTime") Date modifiedTime)-->
+	<update id="updateStatusNoPass">
+		update
+			t_business
+		set
+			the_status=2,/*表示未通过*/
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		where
+			id=#{id}
+	</update>
+
+	<!--根据商家id查询商家数据-->
+	<!--Business findBusById(Integer id)-->
+	<select id="findBusById" resultType="cn.nchu.green_farm.entity.Business">
+		select
+			business_name AS businessName
+		from
+			t_business
+		where
+			id=#{id}
+	</select>
+
+ </mapper>
+

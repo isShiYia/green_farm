@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="cn.nchu.green_farm.mapper.BusinessAddressMapper">
+
+   <!--新增收货地址数据-->
+   <!-- Integer addnew(Address address)-->
+   <insert id="addnew" useGeneratedKeys="true" keyProperty="id" parameterType="cn.nchu.green_farm.entity.BusinessAddress">
+        insert into t_bus_address (
+            bid,name,
+            province,city,
+            area,district,
+            zip,address,
+            phone,tel,
+            tag,is_default,
+            created_user,created_time,
+            modified_user,modified_time
+        ) values (
+            #{bid},#{name},
+            #{province},#{city},
+            #{area},#{district},
+            #{zip},#{address},
+            #{phone},#{tel},
+            #{tag},#{isDefault},
+            #{createdUser},#{createdTime},
+            #{modifiedUser},#{modifiedTime}
+        )
+   </insert>
+
+
+ <!--根据用户id查询收货地址数据-->
+ <!--Integer getCountByBid(Integer bid)-->
+  <select id="getCountByBid" resultType="java.lang.Integer">
+        SELECT
+			COUNT(id)
+		FROM
+			t_bus_address
+		WHERE
+			bid=#{bid}
+  </select>
+
+    <!--根据用户id获取收获地址列表数据-->
+    <!-- List<Address> findByUid(Integer bid)-->
+    <select id="findByBid" resultType="cn.nchu.green_farm.entity.BusinessAddress">
+        SELECT
+			id,name,
+			province,city,
+			area,zip,
+			phone,district,
+			address,tag,
+			tel,
+			is_default AS isDefault
+		FROM
+			t_bus_address
+		WHERE
+			bid=#{bid}
+		ORDER BY
+		    is_default DESC,/*第一排序规则：按默认方式从1-0降序排列*/
+            modified_time DESC /*第二排序规则：按修改时间降序排列，最新修改的时间排到前面*/
+    </select>
+
+    <!--设为默认 共会用到下面三个方法-->
+
+    <!--根据用户id将用户的所有的收货地址设置为非默认 0-->
+    <!-- Integer updateNonDefault(Integer bid)-->
+    <update id="updateNonDefault">
+        UPDATE
+			t_bus_address
+		SET
+            is_default=0
+		WHERE
+			bid=#{bid}
+
+
+    </update>
+
+    <!--将指定的收货地址设置为默认 1-->
+    <!--Integer updateDefault(@Param("id") Integer id,
+                          @Param("modifiedUser") String modifiedUser,
+                          @Param("modifiedTime") Date modifiedTime)-->
+    <update id="updateDefault">
+        UPDATE
+			t_bus_address
+		SET
+			is_default=1,
+			modified_user=#{modifiedUser},
+            modified_time=#{modifiedTime}
+		WHERE
+			id=#{id}
+    </update>
+
+    <!--根据收货地址id查询匹配的收货地址数据-->
+    <!--Address findById(Integer id)-->
+    <select id="findById" resultType="cn.nchu.green_farm.entity.BusinessAddress">
+        select
+            bid,/*第一次设计，用于拿bid进行比对*/
+            name,province,
+			city,area,
+			district,zip,
+			address,phone,
+			tel,tag,
+			/* 在修改收货地址信息的时候需要添加一些其他的字段*/
+			/*name,province,city,area,district,zip,address,phone,tel,tag*/
+            is_default AS isDefault
+        from
+            t_bus_address
+        where
+            id=#{id}
+    </select>
+
+    <!--删除收货地址数据-->
+    <!--根据收货地址id删除收货地址-->
+    <!-- Integer deleteById(Integer id)-->
+    <delete id="deleteById">
+		DELETE FROM
+			t_bus_address
+		WHERE
+			id=#{id}
+	</delete>
+
+    <!--用于删除收货地址数据时重新取出最新的收货地址-->
+    <!--查询用户最后修改的收货地址数据-->
+    <!--Address findLastModified(Integer bid)-->
+    <select id="findLastModified" resultType="cn.nchu.green_farm.entity.BusinessAddress">
+		SELECT
+			id
+		FROM
+			t_address
+		WHERE
+			bid=#{bid}
+    	ORDER BY
+    		modified_time DESC
+    	LIMIT 0,1   /*跳过0条取出一条，最终只取出一条数据*/
+	</select>
+
+
+    <!--修改收货地址信息-->
+    <!--根据收货地址id修改收货地址信息-->
+    <!--Integer updateInfo(BusinessAddress businessAddress)-->
+    <update id="updateInfo">
+        UPDATE
+			t_bus_address
+		SET
+			name=#{name},
+			province=#{province},city=#{city},
+			area=#{area},district=#{district},
+			zip=#{zip},address=#{address},
+			phone=#{phone},tel=#{tel},
+			tag=#{tag},is_default=#{isDefault},
+			modified_user=#{modifiedUser},modified_time=#{modifiedTime}
+		WHERE
+			id=#{id}
+
+    </update>
+
+
+ </mapper>
+

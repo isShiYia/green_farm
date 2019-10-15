@@ -5,10 +5,7 @@ import cn.nchu.green_farm.entity.District;
 import cn.nchu.green_farm.mapper.AddressMapper;
 import cn.nchu.green_farm.service.IAddressService;
 import cn.nchu.green_farm.service.IDistrictService;
-import cn.nchu.green_farm.service.exception.AccessDefinedException;
-import cn.nchu.green_farm.service.exception.AddressNotFoundException;
-import cn.nchu.green_farm.service.exception.InsertException;
-import cn.nchu.green_farm.service.exception.UpdateException;
+import cn.nchu.green_farm.service.exception.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,9 +73,76 @@ public class AddressServiceImpl implements IAddressService {
             throw new AccessDefinedException("设置收获地址失败!访问数据权限验证不通过!");
         }
         // 执行两次修改
-        updateNonDefault(uid, data.getName(), new Date());
+        updateNonDefault(uid);
         updateDefault(id, data.getName(), new Date());
 
+    }
+
+    @Override
+    @Transactional
+    public void delete(Integer uid, Integer id) throws DeleteException, AddressNotFoundException, AccessDefinedException {
+        // 根据收货地址数据id查询数据
+        Address data = findById(id); // 这里面的查询的只有id值，name,是否默认
+        // 判断数据是否为null
+        if (data == null) {
+            // 是：抛出异常
+            throw new AddressNotFoundException("删除收货地址失败!尝试删除的收货地址数据不存在!");
+        }
+        // 判断收货地址数据归属是否有误
+        if (!data.getUid().equals(uid)) {
+            // 有误：抛出异常
+            throw new AccessDefinedException("删除收货地址失败!您尝试删除的收获地址不存在!");
+        }
+        // 执行删除
+        deleteById(id);
+        //【注意】在删除之后还要重新设为默认
+        // 检查是否还有收货地址数据
+        if (getCountByUid(uid) > 0) {
+            // 有：获取最后修改的收货地址的数据的id
+            Integer lastModified = findLastModified(uid).getId();
+            // 重新执行修改，将最新修改的时间设为默认收货地址
+            setDefault(uid, lastModified);
+        }
+    }
+
+    @Override
+    public Address getById(Integer id, Integer uid) throws AddressNotFoundException, AccessDefinedException {
+        // 根据收货地址id获取收获地址数据
+        Address data = findById(id);
+        // 判断数据是否为null
+        if (data == null) {
+            throw new AddressNotFoundException("收获地址显示出错!不存在当前收获地址!");
+        }
+        // 判断收货地址归属是否有误
+        if (!data.getUid().equals(uid)) {
+            throw new AccessDefinedException("收货地址显示出错!您尝试访问的收货地址归属有误!");
+        }
+        // 将不需要显示到界面上的值设为null
+        data.setUid(null);
+        data.setIsDefault(null);
+        // 返回处理的收货地址数据
+        return data;
+    }
+
+    @Override // 根据收货地址id修改收货地址
+    public void changeInfo(Address address, String username) throws AddressNotFoundException, UpdateException,AccessDefinedException {
+        // 根据收货地址id查询收获地址数据
+        Address data = findById(address.getId());
+        // 判断数据是否为null
+        if (data == null) {
+            throw new AddressNotFoundException("修改收货地址失败!您修改的收获地址不存在!");
+        }
+        // 判断用户归属是否正确
+        if (data.getUid().equals(address.getUid())) {
+            throw new AccessDefinedException("修改收货地址失败!您修改的收获地址用户归属有误!");
+        }
+        // 对district进行一个封装
+        address.setDistrict(getDistrict(address.getProvince(), address.getCity(),address.getArea()));
+        // 封装日志
+        address.setModifiedUser(username);
+        address.setModifiedTime(new Date());
+        // 执行修改收货地址
+        updateInfo(address);
     }
 
 
@@ -143,8 +207,8 @@ public class AddressServiceImpl implements IAddressService {
      * 根据用户id将用户的所有的收货地址设置为非默认 0
      * @param uid 用户id
      */
-    private void updateNonDefault(Integer uid, String modifiedUser,Date modifiedTime) {
-        Integer rows = addressMapper.updateNonDefault(uid, modifiedUser, modifiedTime);
+    private void updateNonDefault(Integer uid) {
+        Integer rows = addressMapper.updateNonDefault(uid);
         if (rows < 1) {
             throw new UpdateException("修改默认地址时出现未知错误!");
         }
@@ -168,6 +232,39 @@ public class AddressServiceImpl implements IAddressService {
      */
     private Address findById(Integer id) {
         return addressMapper.findById(id);
+    }
+
+    /**
+     * 根据收货地址id删除收货地址
+     * @param id 收货地址id
+     * @return 受影响的行数
+     */
+    private void deleteById(Integer id) {
+        Integer rows = addressMapper.deleteById(id);
+        if (rows != 1) {
+            throw new DeleteException("删除收货地址数据时发生未知错误!");
+        }
+    }
+
+    /**
+     * 根据用户id查询用户最后修改的收货地址的数据
+     * @param uid 用户id
+     * @return 匹配的收货地址数，如果没有则返回null
+     */
+    private Address findLastModified(Integer uid) {
+        return addressMapper.findLastModified(uid);
+    }
+
+    /**
+     * 修改收货地址信息
+     * @param address 收货地址信息
+     * @return 受影响的行数
+     */
+    private void updateInfo(Address address) {
+        Integer rows = addressMapper.updateInfo(address);
+        if (rows != 1) {
+            throw new UpdateException("修改个人信息时发生未知错误!");
+        }
     }
 
 }
