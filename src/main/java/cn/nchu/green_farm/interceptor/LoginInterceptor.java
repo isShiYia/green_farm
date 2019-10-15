@@ -19,11 +19,11 @@ public class LoginInterceptor implements HandlerInterceptor{
 			response.sendRedirect("../user/login.html");
 			// 		拦截
 			return false;
-		} else if (session.getAttribute("bid") == null) {
+		} /*else if (session.getAttribute("bid") == null) {
 			response.sendRedirect("../business/businessLogin.html");
 			// 		拦截
 			return false;
-		} else {
+		}*/ else {
 			// 非null，即存在uid，即已经登录
 			// 放行
 			return true;

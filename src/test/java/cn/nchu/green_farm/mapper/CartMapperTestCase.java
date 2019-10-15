@@ -67,4 +67,11 @@ public class CartMapperTestCase {
         System.err.println("END.");
     }
 
+    @Test
+    public void findById() {
+        Integer id = 3;
+        Cart cart = cartMapper.findById(id);
+        System.err.println("cart=" + cart);
+    }
+
 }

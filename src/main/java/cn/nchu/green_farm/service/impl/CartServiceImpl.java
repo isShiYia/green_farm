@@ -51,14 +51,33 @@ public class CartServiceImpl implements ICartService {
         }
     }
 
-    @Override
+    @Override // 根据用户id获取当前用户的购物车显示的数据
     public List<CartVO> getByUid(Integer uid) {
         return findByUid(uid);
     }
 
-    @Override
+    @Override // 这里是用于在购物车页面中点击+按钮，对购物车中的商品数量进行+1操作
     public void addCount(String username, Integer id, Integer uid) throws CartNotFoundException, AccessDefinedException, UpdateException {
-
+        // 根据购物车id获取购物车数据
+        Cart data = findById(id);
+        // 判断购物车中的数据是否为null
+        if (data == null) {
+            // 是：抛出异常，CartNotFoundException
+            throw new CartNotFoundException("修改商品数量失败!您尝试修改的商品数据不存在!");
+        }
+        System.err.println("uid=" +uid);
+        System.err.println("data.getUid()=" +data.getUid());
+        // 判断归属是否正确
+        if (!data.getUid().equals(uid)) {
+            // 不正确：抛出异常
+            throw new AccessDefinedException("修改商品数量失败!访问数据权限验证不通过!");
+        }
+        // 获取原来的数量
+        Integer count = data.getCount();
+        // 进行+1操作
+        count ++;
+        // 执行更新
+        updateCount(id, count, username, new Date());
     }
 
     /**
