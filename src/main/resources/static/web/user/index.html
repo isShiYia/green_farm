@@ -163,7 +163,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">新到好货</h3>
 				</div>
-				<div class="panel-body panel-item">
+				<div id="newList" class="panel-body panel-item">
 
 					<div class="col-md-12">
 						<div class="col-md-7 text-row-2"><a href="product.html">现摘正宗新疆库勒尔香梨，10斤整箱包邮特产</a></div>
@@ -196,7 +196,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">热销排行</h3>
 				</div>
-				<div class="panel-body panel-item">
+				<div id="hotList" class="panel-body panel-item">
 
 					<div class="col-md-12">
 						<div class="col-md-7 text-row-2"><a href="product.html">美国进口车厘子带箱3斤大樱桃 新鲜当季水果应季批发</a></div>
@@ -303,6 +303,78 @@
 
 		</footer>
 		<!--页脚结束-->
+	<script>
+		$(document).ready(function () {
+			var url = "../../farmProduct/new_list";
+			// 发送ajax请求，并处理请求
+			$.ajax({
+				"url":url,
+				"type":"POST",
+				"data" :{},
+				"dataType":"json",
+				"success":function(json) {
+					if (json.state == 200) {
+						$("#newList").empty();
+						var list = json.data;
+						for (var i = 0; i < list.length ; i++) {
+							console.log(list[i].image+"-"+list[i].title);
+							var html='<div class="col-md-12">' +
+									'<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>' +
+									'<div class="col-md-2">¥#{price}</div>' +
+									'<div class="col-md-3"><img src="../..#{image}collect.png" width="100%" /></div>' +
+									'</div>';
+
+							html = html.replace(/#{id}/g,list[i].id);
+							html = html.replace(/#{image}/g,list[i].image);
+							html = html.replace(/#{price}/g,list[i].price);
+							html = html.replace(/#{title}/g,list[i].title);
+							$("#newList").append(html);
+						}
+					} else {
+						alert(json.message);
+					}
+				},
+				"error":function(xhr,text, errorThrown) {
+					alert("您登陆的信息已经过期!请重新登录!");
+					location.href = "login.html";
+				}
+			});
+			var url = "../../farmProduct/hot_list";
+			// 发送ajax请求，并处理请求
+			$.ajax({
+				"url":url,
+				"type":"POST",
+				"data" :{},
+				"dataType":"json",
+				"success":function(json) {
+					if (json.state == 200) {
+						$("#hotList").empty();
+						var list = json.data;
+						for (var i = 0; i < list.length ; i++) {
+							console.log(list[i].image+"-"+list[i].title);
+							var html='<div class="col-md-12">' +
+									'<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>' +
+									'<div class="col-md-2">¥#{price}</div>' +
+									'<div class="col-md-3"><img src="../..#{image}collect.png" width="100%" /></div>' +
+									'</div>';
+
+							html = html.replace(/#{id}/g,list[i].id);
+							html = html.replace(/#{image}/g,list[i].image);
+							html = html.replace(/#{price}/g,list[i].price);
+							html = html.replace(/#{title}/g,list[i].title);
+							$("#hotList").append(html);
+						}
+					} else {
+						alert(json.message);
+					}
+				},
+				"error":function(xhr,text, errorThrown) {
+					alert("您登陆的信息已经过期!请重新登录!");
+					location.href = "login.html";
+				}
+			});
+		});
+	</script>
 	</body>
 
 </html>
