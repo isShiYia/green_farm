@@ -13,4 +13,75 @@
 	 WHERE
 		name=#{adminName}
      </select>
+
+	<!---->
+	<!--查询需要审核的商家的数据-->
+	<!--List<FarmProduct> findFarmProductData(Integer page,,Integer limit)-->
+	<select id="findFarmProductData" resultType="cn.nchu.green_farm.entity.FarmProduct">
+	   select
+			id,title AS title,
+			bid,item_type,
+			sell_point AS sellPoint,
+			price,
+			num,image,
+			created_time AS createdTime
+	   from
+	   		t_farm_product
+	   	where
+	   		status = 0
+	   order by
+			id ASC
+		limit
+			#{page},#{limit}
+   </select>
+	<!--查询申请商家数据总条数-->
+	<!--Integer getListOfFarmProductCount()-->
+	<select id="getListOfFarmProductCount" resultType="Integer">
+	   select
+			count(id)
+	   from
+	   		t_farm_product
+		where
+			status = 0
+   </select>
+	<!--根据商家id对数据进行审核通过操作-->
+	<!-- Integer updateStatusPass(@Param("id") Integer id,
+                             @Param("modifiedUser") String modifiedUser,
+                             @Param("modifiedTime")  Date modifiedTime)-->
+	<update id="updateStatusPass">
+		update
+			t_farm_product
+		set
+			status=1,/*表示通过*/
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		where
+			id=#{id}
+	</update>
+
+	<!--根据商家id对数据进行审核为通过操作-->
+	<!--Integer updateStatusNoPass(@Param("id") Integer id,
+                               @Param("modifiedUser")  String modifiedUser,
+                               @Param("modifiedTime") Date modifiedTime)-->
+	<update id="updateStatusNoPass">
+		update
+			t_farm_product
+		set
+			status=2,/*表示未通过*/
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		where
+			id=#{id}
+	</update>
+
+	<!--根据商家id查询商家数据-->
+	<!--Business findProById(Integer id)-->
+	<select id="findProById" resultType="cn.nchu.green_farm.entity.FarmProduct">
+		select
+			title
+		from
+			t_farm_product
+		where
+			id=#{id}
+	</select>
 </mapper>
