@@ -40,4 +40,22 @@ public interface ICartService {
      * @throws UpdateException
      */
     void addCount(String username,Integer id,Integer uid) throws CartNotFoundException, AccessDefinedException,UpdateException;
+
+    /**
+     * 增加购物车中商品的数量
+     * @param username 当前执行操作的执行人
+     * @param id 购物车中商品的id
+     * @param uid 登录的用户的id
+     * @throws CartNotFoundException
+     * @throws AccessDefinedException
+     * @throws UpdateException
+     */
+    void reduceCount(String username,Integer id,Integer uid) throws CartNotFoundException, AccessDefinedException,UpdateException;
+
+    /**
+     * 根据一系列id获取购物车中的数据
+     * @param ids 购物车中所勾选的id的数组
+     * @return 购物车中所勾选的id好的商品数据的信息的集合
+     */
+    List<CartVO> getByIds(Integer[] ids);
 }

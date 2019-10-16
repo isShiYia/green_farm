@@ -117,11 +117,11 @@
 			</div>
 
 			<div class="col-md-12">
-				<form role="form">
+				<form  id="form-create-order"  role="form">
 					<div class="form-group">
 						<label for="name">
 							<h4>选择收货地址：</h4></label>
-						<select class="form-control">
+						<select name="address" id="address-list"  class="form-control">
 							<option>八戒&nbsp;&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;北京市房山区高老庄3排6号&nbsp;&nbsp;&nbsp;1380***1234</option>
 							<option>八戒&nbsp;&nbsp;&nbsp;公司&nbsp;&nbsp;&nbsp;北京市海淀区中关村中路1号1001室&nbsp;&nbsp;&nbsp;1380***1234</option>
 							<option>八戒&nbsp;&nbsp;&nbsp;宿舍&nbsp;&nbsp;&nbsp;北京市海淀区永丰镇30号&nbsp;&nbsp;&nbsp;1380***1234</option>
@@ -146,7 +146,7 @@
 
 									</tr>
 								</thead>
-								<tbody class="cart-body">
+								<tbody  id="cart-list"  class="cart-body">
 									<tr>
 
 										<td><img src="../../images/portal/12DELLXPS13-silvery/collect.png" width="110" /></td>
@@ -174,7 +174,7 @@
 					</div>
 					<div class="pay-bar">
 						<a href="cart.html">返回购物车</a>
-						<span class="pull-right"><input type="button" value="在线支付" class="btn btn-primary btn-lg link-pay"/></span>
+						<span class="pull-right"><input id="btn-submit" type="button" value="在线支付" class="btn btn-primary btn-lg link-pay"/></span>
 					</div>
 
 				</form>
@@ -259,6 +259,127 @@
 
 		</footer>
 		<!--页脚结束-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// 1. 加载收货地址列表
+				showAddressList();
+
+				// 2. 加载购物车数据列表
+				showCartList();
+
+				// 3. 为按钮绑定提交事件
+				$("#btn-submit").click(function() {
+					createOrder();
+				});
+
+			});
+
+			// 加载购物车数据列表
+			function showCartList() {
+				var url = "../../cart/get_by_ids";
+				var data = location.search.substring(1);// 这里是可以在控制台使用
+				$.ajax({
+					"url": url,
+					"data": data,
+					"type": "GET",
+					"dataType": "json",
+					"success": function(json) {
+						$("#cart-list").empty();
+
+						var list = json.data;
+						var selectCount = 0;
+						var selectTotal = 0;
+
+						for (var i = 0; i < list.length; i++) {
+							selectCount += list[i].count;
+							selectTotal += list[i].newPrice * list[i].count;
+							// console.log("数量=" + selectCount);
+
+							var html = '<tr>'
+									+'<td><input type="hidden" name="cart_id" value="#{id}"/><img src="../..#{image}collect.png" width="110" /></td>'
+									+'<td>#{title}</td>'
+									+'<td>¥<span>#{price}</span></td>'
+									+'<td>#{count}</td>'
+									+'<td><span>#{totalPrice}</span></td>'
+									+'</tr>';
+
+							html = html.replace(/#{id}/g, list[i].id);
+							html = html.replace(/#{image}/g, list[i].image);
+							html = html.replace(/#{title}/g, list[i].title);
+							html = html.replace(/#{price}/g, list[i].newPrice);
+							html = html.replace(/#{count}/g, list[i].count);
+							html = html.replace(/#{totalPrice}/g, list[i].newPrice * list[i].count);
+
+							$("#cart-list").append(html);
+
+						}
+						$("#selectCount").html(selectCount);
+						$("#selectTotal").html(selectTotal);
+					},
+					"error": function() {
+						// alert("请选则要需要结算的商品!");
+						// location.href = "cart.html";
+						// alert("请选则要需要结算的商品!");
+					}
+				});
+			}
+
+			// 加载收货地址列表
+			function showAddressList() {
+				var url = "../../address/list";
+				$.ajax({
+					"url": url,
+					"type": "GET",
+					"dataType": "json",
+					"success": function(json) {
+						$("#address-list").empty();
+
+						var list = json.data;
+						for (var i = 0; i < list.length; i++) {
+							var op ='<option value="' +list[i].id +'">'
+									+list[i].name + '     '
+									+list[i].tag+'     '
+									+list[i].phone+'     '
+									+list[i].district+'     '
+									+list[i].address+'     '
+									+'</option>';
+							$("#address-list").append(op);
+						}
+					}
+
+				});
+			}
+
+			function createOrder() {
+				// alert("111");
+				var url = "../../order/create";
+				var data = $("#form-create-order").serialize();
+				// alert(data);
+				console.log(data);
+				$.ajax({
+					"url": url,
+					"data": data,
+					"type": "POST",
+					"dataType": "json",
+					"success": function(json) {
+						if (json.data == 200) {
+							alert("创建成功!");
+						} else {
+							alert(json.message);
+						}
+
+					},
+					"error": function() {
+						alert("您登陆的信息已经过期!请重新登录!");
+						location.href = "login.html";
+					}
+				});
+
+			}
+
+		</script>
+
+
 	</body>
 
 </html>

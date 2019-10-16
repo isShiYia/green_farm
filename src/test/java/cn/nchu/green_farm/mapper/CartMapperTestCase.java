@@ -74,4 +74,15 @@ public class CartMapperTestCase {
         System.err.println("cart=" + cart);
     }
 
+    @Test
+    public void findByIds() {
+        Integer[] ids = {7,8};
+        List<CartVO> list = cartMapper.findByIds(ids);
+        System.err.println("BEGIN.");
+        for (CartVO cartVO : list) {
+            System.err.println("cartVO=" +cartVO);
+        }
+        System.err.println("END.");
+    }
+
 }

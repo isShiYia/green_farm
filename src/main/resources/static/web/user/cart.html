@@ -103,7 +103,7 @@
 					<h3 class="panel-title"><span class="fa fa-shopping-cart"></span> 购物车</h3>
 				</div>
 				<div class="panel-body">
-					<form role="form">
+					<form role="form"  method="get" action="orderConfirm.html">
 						<!--购物车表格开始-->
 						<table class="cart-table" width="100%">
 							<thead>
@@ -177,7 +177,7 @@
 						</div>
 						<div>
 							<span class="pull-right">
-								<input type="button" value="  结  算  " class="btn btn-primary btn-lg link-account" />
+								<input type="submit" value="  结  算  " class="btn btn-primary btn-lg link-account" />
 							</span>
 						</div>
 
@@ -297,7 +297,7 @@
 									+ '<td>#{title}</td>'
 									+ '<td>¥<span id="goodsPrice#{id}">#{price}</span></td>'
 									+ '<td>'
-									+ '<input type="button" value="-" class="num-btn" onclick="reduceNum(1)" />'
+									+ '<input type="button" value="-" class="num-btn" onclick="reduceNum(#{id})" />'
 									+ '<input id="goodsCount#{id}" type="text" size="2" readonly="readonly" class="num-text" value="#{count}">'
 									+ '<input class="num-btn" type="button" value="+" onclick="addCount(#{id})" />'
 									+ '</td>'
@@ -320,7 +320,7 @@
 
 			function addCount(id) {
 				var url = "../../cart/add_count";
-				var data = "id=" + id;
+				var data = "cart_id=" + id;
 				$.ajax({
 					"url": url,
 					"data": data,
@@ -330,6 +330,32 @@
 						// alert("OK");
 						var count = parseInt($("#goodsCount" + id).val());
 						count++;
+						$("#goodsCount" + id).val(count)
+
+						// 取输入框中的内容用val()函数,但是要取出span这类标签的时候要用html()
+						var p = parseInt($("#goodsPrice" + id).html());
+						var tp = p * count;
+						$("#goodsTotalPrice" + id).html(tp);
+					} ,
+					"error": function() {
+						alert("您的登录信息已经过期!请重新登录!");
+						location.href = "login.html";
+					}
+				});
+			}
+
+			function reduceNum(id) {
+				var url = "../../cart/reduce_count";
+				var data = "id=" + id;
+				$.ajax({
+					"url": url,
+					"data": data,
+					"type": "GET",
+					"dataType": "json",
+					"success": function(json) {
+						// alert("OK");
+						var count = parseInt($("#goodsCount" + id).val());
+						count--;
 						$("#goodsCount" + id).val(count)
 
 						// 取输入框中的内容用val()函数,但是要取出span这类标签的时候要用html()

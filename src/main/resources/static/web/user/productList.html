@@ -15,8 +15,8 @@
 		<link rel="stylesheet" type="text/css" href="../../css/layout.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/top.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/favorites.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/imgmove.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="../../css/favorites.css" />-->
+		<!--<link rel="stylesheet" type="text/css" href="../../css/imgmove.css"/>-->
 		<script src="../../js/favorites.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../js/imgmove.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -100,19 +100,20 @@
 		<div class="col-md-offset-1 col-md-10"><b>农产品</b></div>
 		<div id="line1" class="col-md-offset-1 col-md-10">
 
-			<div id="product1" class="col-md-3">
-				<div id="goods1" class="goods-panel">
-					<div class="move-img img-search" />
-						<img src="../../images/portal/14LenovoYOGA710%20_gold/collect.png" width="100%"/>
-					</div>
-					<h4>¥28.9</h4>
-					<h5 class="text-row-3"><a href="product.html"><small>云南德宏特产新鲜水果胭脂果鬼眼睛果山李子酸甜可煮果酱500g</small></a></h5>
-					<span>
+			<div class="col-md-3">
+				<div class="goods-panel">
+					<div class="move-img img-search">
+					<img src="../../images/portal/14LenovoYOGA710%20_gold/collect.png" width="100%"/>
+				</div>
+				<h4>¥28.9</h4>
+				<h5 class="text-row-3"><a href="product.html"><small>云南德宏特产新鲜水果胭脂果鬼眼睛果山李子酸甜可煮果酱500g</small></a></h5>
+				<span>
 						<a href="javascript:void(0)" class="btn btn-default btn-xs add-fav"><span class="fa fa-heart"></span>取消收藏</a>
 						<a href="cart.html" class="btn btn-default btn-xs add-cart"><span class="fa fa-cart-arrow-down"></span>加入购物车</a>
-					</span>
-				</div>
+				</span>
+
 			</div>
+		</div>
 
 
 		</div>
@@ -203,6 +204,8 @@
 
 		</footer>
 		<!--页脚结束-->
+		<link rel="stylesheet" type="text/css" href="../../css/imgmove.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/favorites.css" />
 	<script type="text/javascript">
 		$(document).ready(function () {
 			var page = 1;
@@ -231,11 +234,11 @@
 						console.log("count=" + json.count);
 						$("#line1").empty();
 						var list = json.data;
-						for (var i = 0; i < 4 ; i++) {
+						for (var i = 0; i < list.length ; i++) {
 							console.log(list[i].image+"-"+list[i].title);
 							var html='<div class="col-md-3">'
 									+'<div class="goods-panel">'
-									+'<div class="move-img img-search" />'
+									+'<div class="move-img img-search">'
 									+'<img src="../..#{image}collect.png" width="100%"/>'
 									+'</div>'
 									+'<h4>¥#{price}</h4>'
@@ -267,6 +270,9 @@
 			});
 		}
 	</script>
+		<link rel="stylesheet" type="text/css" href="../../css/imgmove.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/favorites.css" />
 	</body>
-
+	<link rel="stylesheet" type="text/css" href="../../css/imgmove.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/favorites.css" />
 </html>

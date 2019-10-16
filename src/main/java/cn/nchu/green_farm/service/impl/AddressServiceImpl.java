@@ -145,6 +145,11 @@ public class AddressServiceImpl implements IAddressService {
         updateInfo(address);
     }
 
+    @Override
+    public Address getById(Integer addressId) {
+        return findById(addressId);
+    }
+
 
     /**
      * 新增收货地址数据
@@ -174,6 +179,7 @@ public class AddressServiceImpl implements IAddressService {
      * @return 省市区的名称，例如：浙江省杭州市上城区
      */
     private String getDistrict(String province, String city, String area) {
+
        District p = districtService.getByCode(province);
        District c = districtService.getByCode(city);
        District a = districtService.getByCode(area);
