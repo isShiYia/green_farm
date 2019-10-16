@@ -160,7 +160,7 @@ function initMenu() {
 
 		if (typelist[i].parentId == "0") {
 
-			$(".index-menu").append($("<li data='" + typelist[i].id + "'>" + typelist[i].name + "</li>"))
+			$(".index-menu").append($("<li data='" + typelist[i].id + "' ><a href='productList.html' style='color: white;text-decoration:none'>" + typelist[i].name + "</a></li>"))
 
 		}
 
@@ -243,8 +243,8 @@ $(function() {
 		offTop = $(this).offset().top;
 		$("#showIndex").css("top", offTop - 2 + "px")
 		$("#showIndex").css("left", offLeft - 1 + "px")
-		$(this).css("background-color", "#ffffff");
-		$(this).css("color", "#4288c3");
+		// $(this).css("background-color", "#ffffff");
+		// $(this).css("color", "#4288c3");
 	}, function() {
 		$(this).css("background-color", "");
 		$(this).css("color", "");

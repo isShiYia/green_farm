@@ -3,6 +3,40 @@
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="cn.nchu.green_farm.mapper.FarmProductMapper">
 
+	<!--List<FarmProduct> newList()-->
+	<select id="newList" resultType="cn.nchu.green_farm.entity.FarmProduct">
+        SELECT
+            id,bid,
+            item_type AS itemType,
+            title,sell_point AS sellPoint,
+            price,num,image,status,
+            priority,
+            created_user AS createdUser,
+            created_time AS createdTime
+        FROM
+            t_farm_product
+        ORDER BY
+            createdTime desc
+        limit
+            0,4
+	</select>
+	<!--List<FarmProduct> hotList()-->
+	<select id="hotList" resultType="cn.nchu.green_farm.entity.FarmProduct">
+        SELECT
+            id,bid,
+            item_type AS itemType,
+            title,sell_point AS sellPoint,
+            price,num,image,status,
+            priority,
+            created_user AS createdUser,
+            created_time AS createdTime
+        FROM
+            t_farm_product
+        ORDER BY
+        priority desc
+        limit
+            0,4
+	</select>
     <!--新增农产品数据-->
     <!-- Integer addnew(Address address)-->
     <insert id="addnew" useGeneratedKeys="true" keyProperty="id" parameterType="cn.nchu.green_farm.mapper.FarmProductMapper">

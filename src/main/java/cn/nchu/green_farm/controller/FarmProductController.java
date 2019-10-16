@@ -7,19 +7,15 @@ import cn.nchu.green_farm.controller.exception.FileUploadException;
 import cn.nchu.green_farm.entity.FarmProduct;
 import cn.nchu.green_farm.service.IFarmProductService;
 import cn.nchu.green_farm.util.ResponseResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 @RestController
@@ -113,5 +109,16 @@ public class FarmProductController extends BaseController{
             throw new FileUploadException("上传失败!");
         }
 
+    }
+    @PostMapping("/new_list")
+    public ResponseResult<List<FarmProduct>> newList() {
+        List<FarmProduct> list =  farmProductService.getNewList();
+        return new ResponseResult<>(SUCCESS,list);
+    }
+
+    @PostMapping("/hot_list")
+    public ResponseResult<List<FarmProduct>> hotList() {
+        List<FarmProduct> list =  farmProductService.getHotList();
+        return new ResponseResult<>(SUCCESS,list);
     }
 }

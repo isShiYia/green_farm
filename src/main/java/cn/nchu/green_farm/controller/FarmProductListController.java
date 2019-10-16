@@ -3,8 +3,6 @@ package cn.nchu.green_farm.controller;
 import cn.nchu.green_farm.entity.FarmProduct;
 import cn.nchu.green_farm.service.IFarmProductListService;
 import cn.nchu.green_farm.util.ResponseResult;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

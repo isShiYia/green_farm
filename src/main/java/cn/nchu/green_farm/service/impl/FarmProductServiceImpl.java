@@ -43,6 +43,17 @@ public class FarmProductServiceImpl implements IFarmProductService {
         addnew(farmProduct);
         return farmProduct;
     }
+
+    @Override
+    public List<FarmProduct> getNewList() {
+        return farmProductMapper.newList();
+    }
+
+    @Override
+    public List<FarmProduct> getHotList() {
+        return farmProductMapper.hotList();
+    }
+
     private void addnew(FarmProduct farmProduct){
         farmProductMapper.addnew(farmProduct);
     }

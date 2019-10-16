@@ -61,4 +61,26 @@ public class CartController extends BaseController {
         return new ResponseResult<>(SUCCESS);
     }
 
+    // http://localhost:8080/cart/reduce_count?id=7
+     @GetMapping("/reduce_count") // 点击按钮
+//     @PostMapping("/reduce_count") // 点击按钮
+    public ResponseResult<Void> reduceCount(@RequestParam("id") Integer id, HttpSession session) {
+        // 从session中获取用户名
+        String username = session.getAttribute("username").toString();
+        // 从session中获取uid
+        Integer uid = getUidFromSession(session);
+        // 执行业务
+        cartService.reduceCount(username, id, uid);
+        // 返回
+        return new ResponseResult<>(SUCCESS);
+    }
+
+    // http://localhost:8080/cart/get_by_ids?cart_id=7,8
+    @GetMapping("/get_by_ids")
+    public ResponseResult<List<CartVO>> getByIds(@RequestParam("cart_id") Integer[] ids) {
+        List<CartVO> list = cartService.getByIds(ids);
+        return new ResponseResult<>(SUCCESS, list);
+    }
+
+
 }

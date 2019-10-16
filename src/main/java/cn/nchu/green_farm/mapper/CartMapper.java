@@ -54,4 +54,11 @@ public interface CartMapper {
      * @return 匹配的购物车数据，如果没有匹配的数据，则返回null
      */
     Cart findById(Integer id);
+
+    /**
+     * 根据一系列id获取购物车中的数据
+     * @param ids 购物车中所勾选的id的数组
+     * @return 购物车中所勾选的id好的商品数据的信息的集合
+     */
+    List<CartVO> findByIds(Integer[] ids);
 }
