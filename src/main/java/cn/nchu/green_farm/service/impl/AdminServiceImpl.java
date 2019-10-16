@@ -1,14 +1,19 @@
 package cn.nchu.green_farm.service.impl;
 
 import cn.nchu.green_farm.entity.Admin;
+import cn.nchu.green_farm.entity.FarmProduct;
 import cn.nchu.green_farm.mapper.AdminMapper;
 import cn.nchu.green_farm.service.IAdminService;
 import cn.nchu.green_farm.service.exception.AdminNotFoundException;
+import cn.nchu.green_farm.service.exception.BusinessNotFoundException;
 import cn.nchu.green_farm.service.exception.PasswordNotMatchException;
+import cn.nchu.green_farm.service.exception.UpdateException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 管理员业务层实现类
@@ -52,6 +57,41 @@ public class AdminServiceImpl implements IAdminService {
         }
     }
 
+    @Override
+    public List<FarmProduct> getListOfFarmProduct(Integer page, Integer limit) {
+        return adminMapper.findFarmProductData(page,limit);
+    }
+
+    @Override
+    public Integer getListOfFarmProductCount() {
+        return adminMapper.getListOfFarmProductCount();
+    }
+
+    @Override
+    public void changeStatusPass(Integer id, String modifiedUser) throws UpdateException, BusinessNotFoundException {
+        // 根据商家id查询商家数据
+        FarmProduct data = findProById(id);
+        // 判断数据是否为null
+        if (data == null) {
+            throw new BusinessNotFoundException("修改商家数据失败!您尝试修改的商家数据不存在!");
+        }
+        // 是:抛出异常BusinessNotFoundException
+        // 执行审核通过操作
+        updateStatusPass(id, modifiedUser, new Date());
+    }
+
+    @Override
+    public void changeStatusNoPass(Integer id, String modifiedUser) throws UpdateException, BusinessNotFoundException {
+        // 根据商家id查询商家数据
+        FarmProduct data = findProById(id);
+        // 判断数据是否为null
+        if (data == null) {
+            throw new BusinessNotFoundException("修改商家数据失败!您尝试修改的商家数据不存在!");
+        }
+        // 执行审核不通过操作
+        updateStatusNoPass(id, modifiedUser, new Date());
+    }
+
     /**
      * 对原始密码和盐值执行MD5加密
      * @param srcPassword 原始密码
@@ -73,5 +113,38 @@ public class AdminServiceImpl implements IAdminService {
      */
     private Admin findByUsername(String adminName) {
         return adminMapper.findByAdminName(adminName);
+    }
+
+    /**
+     * 根据商家id查询商家数据
+     * @param id 农产品id
+     * @return 匹配的农产品数据，如果没有，则返回null
+     */
+    private FarmProduct findProById(Integer id) {
+        return adminMapper.findProById(id);
+    }
+    /**
+     * 根据农产品id对数据进行审核通过操作
+     * @param id 需要审核的农产品的id
+     * @param modifiedUser 修改执行人：管理员
+     * @param modifiedTime 修改执行时间
+     */
+    private void updateStatusPass(Integer id,String modifiedUser, Date modifiedTime) {
+        Integer rows = adminMapper.updateStatusPass(id, modifiedUser, modifiedTime);
+        if (rows != 1) {
+            throw new UpdateException("更新数据时出现未知错误!");
+        }
+    }
+    /**
+     * 根据农产品id对数据进行审核为通过操作
+     * @param id 需要审核的农产品的id
+     * @param modifiedUser 修改执行人：管理员
+     * @param modifiedTime 修改执行时间
+     */
+    private void updateStatusNoPass(Integer id,String modifiedUser,Date modifiedTime) {
+        Integer rows = adminMapper.updateStatusNoPass(id, modifiedUser, modifiedTime);
+        if (rows != 1) {
+            throw new UpdateException("更新数据时出现未知错误!");
+        }
     }
 }
