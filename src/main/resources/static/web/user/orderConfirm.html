@@ -308,7 +308,7 @@
 							html = html.replace(/#{title}/g, list[i].title);
 							html = html.replace(/#{price}/g, list[i].newPrice);
 							html = html.replace(/#{count}/g, list[i].count);
-							html = html.replace(/#{totalPrice}/g, list[i].newPrice * list[i].count);
+							html = html.replace(/#{totalPrice}/g, parseFloat(list[i].newPrice * list[i].count));
 
 							$("#cart-list").append(html);
 
