@@ -320,7 +320,7 @@
 
 			function addCount(id) {
 				var url = "../../cart/add_count";
-				var data = "cart_id=" + id;
+				var data = "id=" + id;
 				$.ajax({
 					"url": url,
 					"data": data,
@@ -333,8 +333,8 @@
 						$("#goodsCount" + id).val(count)
 
 						// 取输入框中的内容用val()函数,但是要取出span这类标签的时候要用html()
-						var p = parseInt($("#goodsPrice" + id).html());
-						var tp = p * count;
+						var p = parseFloat($("#goodsPrice" + id).html());
+						var tp = p*count;
 						$("#goodsTotalPrice" + id).html(tp);
 					} ,
 					"error": function() {
