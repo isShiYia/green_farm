@@ -2,7 +2,10 @@ package cn.nchu.green_farm.service;
 
 import cn.nchu.green_farm.entity.Address;
 import cn.nchu.green_farm.entity.Cart;
+import cn.nchu.green_farm.service.exception.AccessDefinedException;
+import cn.nchu.green_farm.service.exception.CartNotFoundException;
 import cn.nchu.green_farm.service.exception.ServiceException;
+import cn.nchu.green_farm.service.exception.UpdateException;
 import cn.nchu.green_farm.vo.CartVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +53,20 @@ public class CartSerivceTestCase {
                 System.err.println("cartVO=" +cartVO);
             }
             System.err.println("END.");
+        } catch (ServiceException e) {
+            System.err.println("错误类型:" + e.getClass());
+            System.err.println("错误描述:" + e.getMessage());
+        }
+    }
+
+    @Test // 购物车页面中+按钮，在购物车中增加商品数量
+    public void addCount() {
+        try {
+            String username = "user05";
+            Integer id = 3;
+            Integer uid =1;
+            cartService.addCount(username, id, uid);
+            System.err.println("OK.");
         } catch (ServiceException e) {
             System.err.println("错误类型:" + e.getClass());
             System.err.println("错误描述:" + e.getMessage());
