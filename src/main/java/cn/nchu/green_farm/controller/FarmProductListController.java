@@ -35,6 +35,4 @@ public class FarmProductListController extends BaseController {
         return new ResponseResult<>(SUCCESS,farmProduct);
     }
 
-
-
 }
